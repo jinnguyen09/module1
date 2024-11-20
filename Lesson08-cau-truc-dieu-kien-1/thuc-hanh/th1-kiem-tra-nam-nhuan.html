@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise1 - kiem tra nam nhuan</title>
+</head>
+<body>
+    <button type="button" onclick="calculate()">calculate the leap year</button>
+</body>
+</html>
+<script>
+    function calculate() {
+        let year = prompt("Enter a year to calculate: ");
+            
+            if (isNaN(year)) {
+                alert("Your value is not a number, please enter again!");
+                return;
+            }
+            
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0)) {
+                document.write("Năm " + year + " là năm nhuận");
+            } else {
+                document.write("Năm " + year + " không phải là năm nhuận");
+            }  
+    }
+</script>
