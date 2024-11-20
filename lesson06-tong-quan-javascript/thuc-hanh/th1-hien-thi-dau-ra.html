@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hien thi dau ra</title>
+    <style>
+      .form1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hiển thị kết quả sử dụng thẻ HTML: -->
+    <button type="button" onclick="showmessage();">Alert</button>
+    <!-- Hiển thị kết quả sử dụng hàm document.write(): -->
+    <button type="button" onclick="showmessage();">Document.write</button>
+    <div id="messageDiv"></div>
+    <!-- Hiển thị kết quả sử dụng hàm console.log(): -->
+    <button type="button" onclick="showmessage();">Console.log</button>
+
+    <!-- Bài tập tự làm -->
+    <button type="button" id="buttondisplay">Display form</button>
+    <div id="form" style="display: none">
+      <form action="" method="get">
+        <h1>Sign up</h1>
+        <h2>Họ và tên:</h2>
+        <input type="text" name="name" placeholder="Họ và Tên" /> <br />
+        <h2>Email:</h2>
+        <input type="text" name="email" placeholder="Email" /> <br />
+        <h2>Số điện thoại:</h2>
+        <input type="text" name="phone" placeholder="Số điện thoại" /> <br />
+        <h2>Giới tính:</h2>
+        <input type="radio" name="gender" checked /> Nam
+        <input type="radio" name="gender" /> Nữ <br />
+        <br />
+        <input type="button" name="submit" value="Đăng ký" />
+        <input type="reset" name="reset" value="Nhập lại" />
+      </form>
+    </div>
+  </body>
+</html>
+<script>
+  // Hiển thị kết quả sử dụng thẻ HTML:
+  function showmessage() {
+    alert("Xin chao toi la Nguyen Dinh Thiep!");
+  }
+  // Hiển thị kết quả sử dụng hàm document.write():
+  function showmessage() {
+    document.getElementById("messageDiv").innerHTML =
+      "Xin chao toi la NGUYEN DINH THIEP!";
+  }
+  // Hiển thị kết quả sử dụng hàm console.log():
+  function showmessage() {
+    console.log("Xin chao toi la Nguyen Dinh Thiep");
+  }
+
+  // Bài tập tự làm:
+  const buttondisplay = document.getElementById("buttondisplay");
+  const form = document.getElementById("form");
+  buttondisplay.addEventListener("click", () => {
+    if (form.style.display === "none") {
+      form.style.display = "block"; // Hiển thị bảng
+      buttondisplay.textContent = "hide"; // Đổi nội dung nút
+    } else {
+      form.style.display = "none"; // Ẩn bảng
+      buttondisplay.textContent = "display"; // Thay đổi nội dung nút
+    }
+  });
+</script>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tao form don gian</title>
+    <style>
+         /*style form 1*/
+        .form1 {
+            margin: auto;
+            margin-top: 50px;
+            width: 500px;
+            height: auto;
+        }
+        .title-form1 {
+            background-color: red;
+            color: white;
+            text-align: center;
+            font-size: large;
+        }
+        .yourname {
+            margin-top: 10px;
+            color: blue;
+            margin-left: 25px;
+        }
+        .email {
+            margin-left: 40px;
+            margin-top: 10px;
+            color: blue;
+            word-spacing: 10px;
+        }
+        .select {
+            margin-top: 10px;
+            margin-left: 30px;
+            height: auto;
+            width: 400px;
+        }
+        .reset {
+            margin-left: 5px;
+        }
+         .request {
+            margin-top: 10px;
+            margin-left:95px;
+        }
+        /*style form 2*/
+        .form2 {
+            margin: auto;
+            height: auto;
+            width: 500px;
+            background-color: rgb(255, 255, 125);
+        }
+        .title-form2 {
+            background-color: lightblue;
+            color: blue;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        const texarea = document.getElementById('mytextarea')
+        const wordcount = document.getElementById('wordcount')
+        const maxlength = 200
+
+        texarea.addEventListener('input', () => {
+            const currentLength = texarea.value.length; // Số kí tự hiện tại
+            wordCountDisplay.textContent = `Số chữ: ${currentLength}/${maxLength}`;
+        });
+    </script>
+</head>
+<body>
+    <form class="form1" action="https://www.google.com.vn/?hl=vi" method="get">
+        <fieldset>
+                <div class="title-form1">
+                    Sở thích của bạn
+                </div>
+                <div>
+                    <div class="yourname">
+                        <span style="margin-right: 5px;">Họ và tên </span> <input type="textbox" name="yourname" placeholder="Họ và tên" size="25">
+                    </div>
+                    <div class="email">
+                        <span style="margin-right: 5px;">Email</span> <input type="textbox" name="email" placeholder="Email">
+                    </div>
+                </div>  
+                <div class="select" style="display: grid; grid-template-columns:60px 1fr;">
+                    <div style="color: blue; height: auto;width: auto; display: inline-block;">Sở thích</div>
+                    <div style="color: orange; height: 60px; display: inline-block; width: 280px;">
+                        <input type="checkbox" name="hobby"> Thể thao
+                        <span style="margin-left: 8px;"><input type="checkbox" name="hobby" > Âm nhạc</span>
+                        <span style="margin-left: 14px;"><input type="checkbox" name="hobby" > Đọc sách </span>
+                        <input type="checkbox" name="hobby" > Lướt web
+                        <span style="margin: 2px;"><input type="checkbox" name="hobby" > Chơi game </span>
+                        <input type="checkbox" name="hobby" > Điện ảnh
+                        <input type="checkbox" name="hobby" > Du lịch 
+                    </div>
+                </div>
+                <div class="request">   
+                    <input type="submit" name="sign-up" value="Gửi thông tin" size="20" class="sign-up">
+                    <input type="reset" value="Nhập lại" class="reset" >
+                </div>
+        </fieldset>
+    </form>
+    <!-- form 2 -->
+    <form class="form2" action="https://www.google.com.vn/?hl=vi" method="get" style="margin-top: 50px;">
+        <fieldset>
+            <div class="title-form2">Đăng kí học viên</div>
+            <div style="margin-top: 10px; color: blue;">Họ và tên <input type="textbox" name="yourname" size="30" style="margin-left: 32px;"></div>
+            <div style="margin-top: 10px; color: blue;">Ngày sinh<input type="textbox" style="margin-left: 33px;"></div>
+            <div style="margin-top: 10px;"><span style="color: blue;">Giới tính</span><input type="radio" name="gender" checked style="margin-left: 40px;"> Nam <input type="radio" name="gender"> Nữ</div>
+            <div style="margin-top: 10px; color: blue; display: grid; grid-template-columns: 60px 1fr 150px;">Địa chỉ<textarea name="content" rows="4" cols="30" maxlength="100" style="margin-left: 40px;" id="mytextarea"></textarea><p id="wordcount">số chữ: 0/100</p></div>
+            <div style="margin-top: 10px; color: blue;">
+                Lớp 
+                <select name="grade" style="margin-left: 70px;">
+                    <option value="">--Chọn lớp--</option>
+                    <option value="">Lớp 10</option>
+                    <option value="">Lớp 11</option>
+                    <option value="">Lớp 12</option>
+                </select>
+            </div>
+            <div style="margin-top: 10px; color: blue;">Email <input type="textbox" name="email" style="margin-left: 58px;"></div>
+            <div style="margin-top: 10px; color: blue;">Điện Thoại<input type="number" name="phone" style="margin-left: 28px;"></div>
+            <div style="margin-top: 10px; margin-left: 100px;">
+                <input type="submit" value="Đăng ký" name="submit">
+                <input type="reset" value="Nhập lại" name="reset">
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>

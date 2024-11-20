@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise2 - ứng dụng chuyển đổi tiền tệ</title>
+</head>
+<body>
+    <div style="display: inline-block; text-align: center;">
+    <p>Amount</p>
+    <input type="number" id="input" min="0" placeholder="Amount">
+    </div>
+    <div style="display: inline-block; text-align: center;">
+        <p>From currency</p>
+        <select id="from">
+            <option value="USD">USD</option>
+            <option value="VND">VND</option>
+        </select>
+    </div>
+    <div style="display: inline-block; text-align: center;">
+        <p>To currency</p>
+        <select id="to">
+            <option value="VND">VND</option>
+            <option value="USD">USD</option>
+        </select>
+    </div>
+    <button type="button" onclick="convert()">Convert</button>
+    <p id="output"></p>
+</body>
+</html>
+<script>
+    function convert() {
+        const amount = parseInt(document.getElementById('input').value);
+        const from = document.getElementById('from').value;
+        const to = document.getElementById('to').value;
+        console.log(amount);
+        console.log(from);
+        console.log(to)
+        
+        let Result;
+        let USD = amount * 25; // Cập nhật giá USD ngày 20/11/2025
+        let VND = amount / 25000; 
+        
+        if (isNaN(amount) || amount <= 0) {
+            Result = "Vui lòng nhập lại!"
+            return;
+        }
+        
+        if (from === 'USD' && to === 'VND') {
+            Result = "Result: " + USD + ".000 VND"
+        } else if (from === 'VND' && to === 'USD') {
+            Result = "Result: " + VND.toFixed(2) + " $";
+        } else if (from === 'USD' && to === 'USD') {
+            Result = "Result: " + amount + " $"
+        } else if (from === 'VND' && to === 'VND') {
+            Result = "Result: " + amount + " Đ"
+        }
+        
+        document.getElementById("output").innerHTML = Result;
+    }
+</script>

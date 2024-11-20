@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form dang ki nguoi dung</title>
+    <style>
+        .form1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form1">
+        <form action="http://demo.codegym.vn/6/registration_form/register.php" method="get">
+            <h1>Sign up</h1>
+            <h2>Họ và tên:</h2>
+            <input type="text" name="name" placeholder="Họ và Tên"/> <br>
+            <h2>Email:</h2>
+            <input type="text" name="email" placeholder="Email"/> <br>
+            <h2>Số điện thoại:</h2>
+            <input type="text" name="phone" placeholder="Số điện thoại"/> <br>
+            <h2>Giới tính:</h2>
+            <input type="radio" name="gender" checked/> Nam
+            <input type="radio" name="gender"/> Nữ <br>
+            <br>
+            <input type="button" name="submit" value="Đăng ký">
+            <input type="reset" name="reset" value="Nhập lại">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple_form</title>
+    <style>
+        .form1 {
+            font-family: 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
+            font-size: large;
+            background-color: aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            width: 400px;
+            margin: auto;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body style="background-color: grey;"> 
+    <form class="form1" action="https://www.google.com/?hl=vi" method="get">
+        <fieldset>
+            <legend><h1>Order form</h1></legend>
+            <h3>What would you like to drink?</h3>
+            <select>
+                <option value="">Coffee</option>
+                <option value="">Milk tea</option>
+                <option>Beer</option>
+                <option>Fruit juice</option>
+                <option>Watermelon juice</option>
+                <option>Apple juice</option>
+            </select>
+            <h3>How many would you like to order?</h3>
+            <input type="radio" name="rd"/> 1 - 10$ <br>
+            <input type="radio" name="rd"/> 2 - 20$ <br>
+            <input type="radio" name="rd"/> 3 - 25$ <br>
+            <h3>Name <span style="color: red">*</span> </h3>
+            <input type="text" name="firstname" placeholder="Firstname" size="15">
+            <input type="text" name="lastname" placeholder="Lastname" size="15">
+            <h3>Email</h3>
+            <input type="text" name="email" size="15" placeholder=" Your email"/> 
+            <h3>Phone Number</h3>
+            <input type="text" name="phone1" size="10" placeholder="Phone 1"/> <br>
+            <input type="text" name="phone2" size="10" placeholder="Phone 2"/> <br>
+            <input type="text" name="phone3" size="10" placeholder="Phone 3"/>
+            <p><input type="button" name="submit" value="submit">
+            <input type="reset" value="reset"/></p>
+        </fieldset>
+    </form>
+</body>
+</html>

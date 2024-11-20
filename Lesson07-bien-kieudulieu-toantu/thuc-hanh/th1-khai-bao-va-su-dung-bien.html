@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>th1- khai bao va su dung bien</title>
+</head>
+<body>
+    th1 - khai bao va su dung bien
+    <p>Bài 1: </p>
+    <script>
+        let i = 10
+        let f = 20.5
+        let b = true
+        let s = 'Hà Nội'
+        document.write('i = ' + i);
+        document.write('<br/>');
+        document.write('f = ' + f);
+        document.write('<br/>');
+        document.write('b = ' + b);
+        document.write('<br/>');
+        document.write('s = ' + s);
+    </script>
+    <p>Bài 2:</p>
+    <script>
+        let width = 5
+        let height = 5
+        let area = width * height
+        document.write('Area = ' + area);
+    </script>
+    <p>Bài 3:</p>
+    <button type="button" onclick="button()">Xem bội của hai số</button>
+    <script>
+        function button() {
+            // Nhập dữ liệu cho a và b
+            let a = prompt('Nhập số a: ');
+            let b = prompt('Nhập số b: ');
+            // Gán giá trị đã nhập và chuyển đổi chuỗi thành kiểu số cho a và b
+            a = Number(a);
+            b = Number(b);
+            
+            if (isNaN(a) || isNaN(b)) {
+                alert('Số không hợp lệ, vui lòng nhập lại!');
+                return; 
+            }
+            // Kiểm tra bội số
+            if (b === 0){
+                alert('a không thể chia cho 0');
+            } 
+            else if (a % b === 0) {
+                alert('a là bội số của b');
+            }
+            else {
+                alert('a không phải là bội số của b');
+            }
+        }
+    </script>
+</body>
+</html>
