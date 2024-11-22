@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise4 - game puzzle</title>
+</head>
+   <style>
+        img {
+            border: 1px solid transparent;
+            margin: 1px;
+        }
+        .highlight {
+            border: 5px solid greenyellow;
+        }
+    </style>
+<body>
+    <div style="text-align: center;">
+        <img src="funny-cat1_part1x1.jpg" alt="" onclick="cat1()" id="pic1"> <br>
+        <img src="monkey_part2x1.jpg" alt="" onclick="cat2()" id="pic2"> <br>
+        <img src="panda_swap_part3x1.jpg" alt="" onclick="cat3()" id="pic3"> <br>
+        <img src="funny-cat1_part4x1.jpg" alt="" onclick="cat4()" id="pic4"> <br>
+        <img src="monkey_part5x1.jpg" alt="" onclick="cat5()" id="pic5"> <br>
+    </div>
+</body>
+</html> 
+
+<script>
+    function cat1() {
+        
+        const pic1 = document.getElementById("pic1"); 
+        
+        if (pic1.src.includes('funny-cat1_part1x1.jpg')) {
+            pic1.src = 'monkey_part1x1.jpg';
+        } else if (pic1.src.includes('monkey_part1x1.jpg')) {
+            pic1.src = 'panda_swap_part1x1.jpg';
+        } else {
+            pic1.src = 'funny-cat1_part1x1.jpg';
+        }
+        checkAllImages();
+    }
+    function cat2() {
+        
+        const pic2 = document.getElementById("pic2"); 
+        
+        if (pic2.src.includes('funny-cat1_part2x1.jpg')) {
+            pic2.src = 'monkey_part2x1.jpg';
+        } else if (pic2.src.includes('monkey_part2x1.jpg')) {
+            pic2.src = 'panda_swap_part2x1.jpg';
+        } else {
+            pic2.src = 'funny-cat1_part2x1.jpg';
+        }
+        checkAllImages();
+    }
+    function cat3() {
+        
+        const pic3 = document.getElementById("pic3"); 
+        
+        if (pic3.src.includes('funny-cat1_part3x1.jpg')) {
+            pic3.src = 'monkey_part3x1.jpg';
+        } else if (pic3.src.includes('monkey_part3x1.jpg')) {
+            pic3.src = 'panda_swap_part3x1.jpg';
+        } else {
+            pic3.src = 'funny-cat1_part3x1.jpg';
+        }
+        checkAllImages();
+    }
+    function cat4() {
+        
+        const pic4 = document.getElementById("pic4"); 
+        
+        if (pic4.src.includes('funny-cat1_part4x1.jpg')) {
+            pic4.src = 'monkey_part4x1.jpg';
+        } else if (pic4.src.includes('monkey_part4x1.jpg')) {   
+            pic4.src = 'panda_swap_part4x1.jpg';
+        } else {
+            pic4.src = 'funny-cat1_part4x1.jpg';
+        }
+        checkAllImages();
+    }
+    function cat5() {
+        
+        const pic5 = document.getElementById("pic5"); 
+        
+        if (pic5.src.includes('funny-cat1_part5x1.jpg')) {
+            pic5.src = 'monkey_part5x1.jpg';
+        } else if (pic5.src.includes('monkey_part5x1.jpg')) {
+            pic5.src = 'panda_swap_part5x1.jpg';
+        } else {
+            pic5.src = 'funny-cat1_part5x1.jpg';
+        }
+        checkAllImages();
+    }
+    
+        function checkAllImages() {
+            const images = [
+                document.getElementById('pic1').src,
+                document.getElementById('pic2').src,
+                document.getElementById('pic3').src,
+                document.getElementById('pic4').src,
+                document.getElementById('pic5').src,
+            ];
+
+            const allSame = images.every(src => src.includes('funny-cat1_part')) ||
+                            images.every(src => src.includes('monkey_part')) ||
+                            images.every(src => src.includes('panda_swap_part'));
+
+            const imageElements = document.querySelectorAll('img');
+            if (allSame) {
+                imageElements.forEach(img => img.classList.add('highlight'));
+            } else {
+                imageElements.forEach(img => img.classList.remove('highlight'));
+            }
+        }
+</script>

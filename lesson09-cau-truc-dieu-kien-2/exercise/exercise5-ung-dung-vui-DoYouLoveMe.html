@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise5 - ung dung vui Do You Love Me</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Do you love me?</h1>
+    <div style="display: flex; justify-content: center; align-items: center;">
+    <button onclick="yes()" style="margin-right: 100px; width: 50px; height: 30px;" value="yes">Yes</button>    
+    <button onmouseover="no()" style="width: 50px; height: 30px; position: absolute; margin-left: 80px;" value="no" id="no">No</button>
+    </div>
+</body>
+</html>
+<script>
+    function yes() {
+        alert('I Love You Too!')
+    }
+    function no() {
+        let x = Math.round(Math.random() * window.innerWidth);
+        let y = Math.round(Math.random() * window.innerHeight);
+
+        document.getElementById('no').style.left = x + 'px';
+        document.getElementById('no').style.top = y + 'px';
+    }
+</script>

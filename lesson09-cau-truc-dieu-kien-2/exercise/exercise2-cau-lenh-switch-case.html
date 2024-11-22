@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise2 - cau lenh switch case</title>
+</head>
+<body>
+    <form>
+    <h1>Checking the number of days in a month.</h1>
+    <input type="number" name="input" id="input" placeholder="Enter month from 1 - 12" style="width: 160px;;" oninput="limitInput(this, 1 , 12)">
+    <button type="button" name="output" onclick="caculate()">Calculate the number of days.</button>
+    <p id="output" style="font-size: 20px;"></p>
+    </form>
+</body>
+</html>
+<script>
+    function limitInput(element, min, max) {
+        const value = parseInt(element.value);
+        if (value < min) element.value = min;
+        if (value > max) element.value = max; 
+    }
+
+    function caculate() {
+        const input = parseInt(document.getElementById('input').value);
+        const p = document.getElementById('output');
+
+        let d31 = ' has 31 days in the year.';
+        let d30 = ' has 30 days in the year.';
+        let d29 = ' has 29 days in the year.';
+        let d28 = ' has 28 days in a normal year or 29 days in a leap year';
+
+        switch (input) {
+            case 1:
+                p.innerHTML =  'January' + d31
+                break;
+            case 2:
+                p.innerHTML = 'February' + d28
+                break;
+            case 3: 
+                p.innerHTML = 'March' + d31
+                break;
+            case 4: 
+                p.innerHTML = 'April' + d30
+                break;
+            case 5: 
+                p.innerHTML = 'May' + d31
+                break;
+            case 6: 
+                p.innerHTML = 'June' + d30
+                break;
+            case 7: 
+                p.innerHTML = 'July' + d31
+                break;
+            case 8: 
+                p.innerHTML = 'August' + d31
+                break;
+            case 9: 
+                p.innerHTML = 'September' + d30
+                break;
+            case 10: 
+                p.innerHTML = 'October' + d31
+                break;
+            case 11: 
+                p.innerHTML = 'November' + d30
+                break;
+            case 12: 
+                p.innerHTML = 'December' + d31
+                break;
+            default:
+                p.innerHTML = 'Invalid month! Please enter a number between 1 and 12.'
+        }
+    }
+</script>

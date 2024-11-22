@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise1 - tinh chi so can nang cua co the</title>
+</head>
+<body>
+    <h1>Caculate your BMI</h1>
+    Your weight (kg) <input type="number" id="weight" placeholder="Enter your weight"> <br>
+    <br>
+    Your Height (m) <input type="number" id="height" placeholder="Enter your width"> <br>
+    <br>
+    <button type="button" onclick="Result()" style="margin-left: 130px;">Result</button>
+    <br>
+    <p id="output"></p>
+</body>
+</html>
+<script>
+    function Result() {
+        const weight = parseInt(document.getElementById('weight').value);
+        const height = parseFloat(document.getElementById('height').value);
+        
+        let bmi = weight / (Math.pow(height, 2));
+        let p;
+        
+        if (bmi < 18) 
+            p = "Underweight";
+        else if (18 <=bmi < 25)
+            p = "Normal";
+        else if (25 <=bmi < 30)
+            p = "Overweight";
+        else
+            p = "Obese";
+        const output = document.getElementById('output');
+        output.innerHTML = 'Your BMI is: ' + bmi.toFixed(2) + ' and you are ' + p;
+    }
+</script>

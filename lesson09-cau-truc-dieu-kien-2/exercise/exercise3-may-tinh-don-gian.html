@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise3 - May tinh don gian</title>
+    <style>
+        table {
+            width: 365px;
+            height: 200px;
+            text-align: center;
+            border: 1px solid #000000;
+            margin-left: 10px;
+            margin-right: 10px;
+            tr, td {
+                background-color: #F0F0F0;
+            }
+        }
+        input {
+            width: 358px;
+            height: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .caculator {
+            border: 3px solid #000000;
+            width: 385px;
+            height: 260px;
+            margin-left: 700px;
+        }
+        button {
+        font-size: 25px;
+        height: 40px;
+        width: 80px;
+        color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="margin-left: 820px;">Caculator</h1>
+    <div class="caculator">
+    <input type="text" name="input" id="input" value="" readonly>
+    <table>
+        <tr>
+            <td><button onclick="data('1')">1</button></td>
+            <td><button onclick="data('2')">2</button></td>
+            <td><button onclick="data('3')">3</button></td>
+            <td><button onclick="data('+')">+</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="data('4')">4</button></td>
+            <td><button onclick="data('5')">5</button></td>
+            <td><button onclick="data('6')">6</button></td>
+            <td><button onclick="data('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="data('7')">7</button></td>
+            <td><button onclick="data('8')">8</button></td>
+            <td><button onclick="data('9')">9</button></td>
+            <td><button onclick="data('*')">*</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="clearInput()">AC</button></td>
+            <td><button onclick="data('0')">0</button></td>
+            <td><button onclick="calculate()">=</button></td>
+            <td><button onclick="data('/')">/</button></td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>
+<script>
+    function data(value) {
+        const input = document.getElementById('input');
+        input.value += value;
+    }
+
+    function clearInput() {
+        const input = document.getElementById('input');
+        input.value = '';
+    }
+
+    function calculate() {
+        const input = document.getElementById('input');
+        try {
+            input.value = eval(input.value);
+        } catch (e) {
+            input.value = 'Error';
+        }
+    }
+</script>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    button {
+      width: 32px;
+      height: 32px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="text" id="view"><br><br>
+  <table>
+    <tr>
+      <td><button onclick="addToInput(1)">1</button></td>
+      <td><button onclick="addToInput(2)">2</button></td>
+      <td><button onclick="addToInput(3)">3</button></td>
+      <td><button onclick="addToInput('+')">+</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="addToInput(4)">4</button></td>
+      <td><button onclick="addToInput(5)">5</button></td>
+      <td><button onclick="addToInput(6)">6</button></td>
+      <td><button onclick="addToInput('-')">-</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="addToInput(7)">7</button></td>
+      <td><button onclick="addToInput(8)">8</button></td>
+      <td><button onclick="addToInput(9)">9</button></td>
+      <td><button onclick="addToInput('*')">*</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="document.getElementById('view').value = ''; previousValue = ''">AC</button></td>
+      <td><button onclick="addToInput(0)">0</button></td>
+      <td><button onclick="calculator()">=</button></td>
+      <td><button onclick="addToInput('/')">/</button></td>
+    </tr>
+  </table>
+  <script>
+    let firstValue = '';
+    let secondValue = '';
+    let operator = '';
+    function addToInput(value) {
+      if (value === '+' || value === '-' || value === '*' || value === '/') {
+        if (firstValue !== '') operator = value;
+      } else {
+        if (operator === '') {
+          firstValue = firstValue + value;
+        } else {
+          secondValue = secondValue + value;
+        }
+      }
+      document.getElementById('view').value = firstValue + operator + secondValue;
+    }
+
+    function calculator() {
+      let result;
+      switch (operator) {
+        case '+':
+          result = parseInt(firstValue) + parseInt(secondValue);
+          break;
+        case '-':
+          result = parseInt(firstValue) - parseInt(secondValue);
+          break;
+        case '*':
+          result = parseInt(firstValue) * parseInt(secondValue);
+          break;
+        case '/':
+          result = parseInt(firstValue) / parseInt(secondValue);
+          break;
+      }
+      firstValue = secondValue = operator = '';
+      document.getElementById('view').value = result;
+    }
+  </script>
+</body>
+
+</html> -->
