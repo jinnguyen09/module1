@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Th1 - Su dung vong lap for</title>
+</head>
+<body>
+    <p>Bài 1: Viết chương trình hiển thị chuỗi “The number is N” 5 lần sử dụng vòng lặp for. Với N sẽ hiển thị từ 0 đến 5.</p>
+    <p id="output1"></p>
+    <p>Bài 2: Viết chương trình nhập vào một số bất kỳ lớn hơn 0. Tính tổng các phần tử từ 1 đến số vừa nhập vào.</p>
+    <form>
+    <input type="number" placeholder="Enter random number" id="number" oninput="limit_Input(this, 1 , 1000)">
+    <button type="button" onclick="sum()">Sum</button>
+    <button type="reset">Reset</button>
+    <p id ="ouput2"></p>
+    <p id ="ouput3"></p>
+    </form>
+</body>
+</html>
+<script>
+    const p1 = document.getElementById('output1');
+    let i;
+    for (i = 0; i <= 5; i++) {
+        p1.innerHTML += 'The number is ' + i + ('<br>') + ('<br>');
+    }
+    // bài 2: 
+    function limit_Input(element, min, max) {
+        const value = parseInt(element.value);
+        if (value < min) element.value = min;
+        if (value > max) element.value = max;
+    }
+
+    function sum() {
+    const y = parseInt(document.getElementById('number').value);
+    const p2 = document.getElementById('ouput2');
+    const p3 = document.getElementById('ouput3');
+    
+    let x, z = 0;
+    for (x = 1; x <= y; x++) {
+        p2.innerHTML += 'The number is ' + x + '<br>' + '<br>';
+        z = z + x
+        p3.innerHTML = 'The sum of the total numbers is ' + z;
+    }
+    }
+</script>

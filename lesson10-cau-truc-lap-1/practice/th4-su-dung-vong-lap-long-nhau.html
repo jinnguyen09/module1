@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>th4 - su dung vong lap long nhau</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let tb;
+        tb = "<table border='1' width='300' cellspacing='0' cellpadding='10'>"
+    for (i = 1; i <= 10; i++) {
+        tb = tb + "<tr>";
+    for (j = 1; j <= 10; j++) {
+        tb = tb + "<td>" + i * j + "</td>";
+    }
+    tb = tb + "</tr>";
+}
+    tb = tb + "</table>";
+    document.write(tb);
+</script>
