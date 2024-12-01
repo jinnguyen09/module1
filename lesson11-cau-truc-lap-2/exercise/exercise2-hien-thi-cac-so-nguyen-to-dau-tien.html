@@ -1,0 +1,75 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise2-hien-thi-cac-so-nguyen-dau-tien</title>
+ </head>
+ <body>
+   <input type="number" id="inputNumber" oninput="limitInput(this, 1 , 1000)" placeholder="check interger number">
+   <button type="button" onclick="search()">Search</button>
+   <p id="output"></p>
+ </body>
+ </html>
+ <script>
+  function limitInput(element, min, max) {
+  const value = parseInt(element.value);
+  if (value < min) element.value = min;
+  if (value > max) element.value = max;
+}
+
+function search() {
+  const inputNumber = parseInt(document.getElementById('inputNumber').value); // Số lượng số nguyên tố cần tìm
+  if (isNaN(inputNumber) || inputNumber <= 0) {
+    alert("Vui lòng nhập một số nguyên dương.");
+    return;
+  }
+  let count = 0; // Đếm số nguyên tố đã tìm thấy
+  let i = 2; // Bắt đầu kiểm tra từ số 2
+  const output = document.getElementById('output');
+  output.innerHTML = ''; // Xóa nội dung cũ
+
+  while (count < inputNumber) {
+    if (isPrime(i)) {
+      output.innerHTML += 'Số nguyên thứ ' + (y = count + 1) + ': ' + i + '<br>'; // Thêm số nguyên tố vào kết quả
+      count++;
+    }
+    i++;
+  }
+}
+
+// Hàm kiểm tra số nguyên tố
+function isPrime(num) {
+  if (num < 2) return false; // Số nhỏ hơn 2 không phải số nguyên tố
+  for (let j = 2; j <= Math.sqrt(num); j++) {
+    if (num % j === 0) return false;
+  }
+  return true;
+}
+
+  // Demo
+
+  // function limitInput(element, min, max) {
+  //   const value = parseInt(element.value);
+  //   if (value < min) element.value = min;
+  //   if (value > max) element.value = max;
+  // }
+  // function search() {
+  //   // Điều kiện của 1 số nguyên tố là: chia hết cho 1 và chia hết cho chính nó
+  //   const inputNumber = parseInt(document.getElementById('inputNumber').value); // Số nguyên tố cần lưu ra
+  //   let count = 0; // Đếm số nguyên tố
+  //   let i = 3; // Sô nguyên tố
+  //   let j = 2; // Kiểm tra số nguyên tố
+  //   const output = document.getElementById('output');
+
+  //   while (count <= inputNumber) {
+  //         while (i > j , i % j != 0) {
+  //           j++
+  //         } 
+  //         for (; i = j, i % j == 0; i++) { 
+  //          output.innerHTML = 'Số nguyên tố: ' + i + '<br>'
+  //         } 
+  //         count++
+  //       }
+  //     }
+ </script>

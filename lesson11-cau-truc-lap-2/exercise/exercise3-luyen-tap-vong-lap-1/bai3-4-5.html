@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 3-4-5</title>
+</head>
+<body>
+    <p>Bài 3: Hiển thị ra 20 số trong dãy fibonacci đầu tiên.</p>
+    <button type="button" onclick="displayFibonacci()">fibonacci</button>
+    <div id="output3"></div>
+    <br>
+    <p>Bài 4: Tìm số đầu tiên trong dãy fibonacci chia hết cho 5.</p>
+    <button type="button" onclick="divisible5Fibonacci()">fibonacci</button>
+    <div id="output4"></div>
+    <br>
+     <p>Bài 5: Tính tổng của 20 số đầu tiên trong dãy fibonacci.</p>
+    <button type="button" onclick="sumFibonacci()">fibonacci</button>
+    <div id="output5"></div>
+</body>
+</html>
+<script>
+// Bài 3:
+    // dãy fibonancci: 1, 2, 3, 5, 8, 13, ... (fn = fn - 1  + fn - 2)
+    function displayFibonacci() {
+        const output3 = document.getElementById('output3');
+        output3.innerHTML = '';
+        let n = parseInt(prompt('Enter the number of fibonacci sequences to print: '));
+        Number(n);
+        
+        // Kiểm tra giá trị nhập vào
+        while (isNaN(n) || n <=2) {
+            if (isNaN(n)) {
+                n = prompt('Invalid number, please try again!')
+            } else if (n <= 2) {
+                n = prompt('The number must be larger than 2 Input again')
+            }
+        }
+    
+        // Kiểm tra và hiển thị dãy fibonacci
+        let f1 = 1; let f2 = 1; let fn; let i = 3;
+        output3.innerHTML += '<br>' + 'Fibonacci thứ 1: 1' + '<br>';
+        output3.innerHTML += 'Fibonacci thứ 2: 1' + '<br>';
+        while(i <= n) {
+            output3.innerHTML += 'Fibonacci thứ ' + i + ': ' + (fn = f1 + f2) + '<br>';
+            f1 = f2
+            f2 = fn 
+            i++
+        }
+    }
+
+// Bài 4:
+    function divisible5Fibonacci() {
+        const output4 = document.getElementById('output4');
+        output4.innerHTML = '';
+    
+        // Kiểm tra và hiển thị số đầu tiên chia hêt cho 5
+        let f1 = 1; let f2 = 1; let fn;
+        while(fn % 5 != 0) {
+            fn = f1 + f2
+            f1 = f2
+            f2 = fn
+        }
+        output4.innerHTML += '<br>' + 'The first number in the Fibonacci sequence that divisible by 5 is: ' + fn
+    }
+
+
+// Bài 5: 
+    
+    // Nhập tổng của dãy số fibonacci cần tính
+    function sumFibonacci() {
+        const output5 = document.getElementById('output5');
+        output5.innerHTML = '';
+        let n = parseInt(prompt('Input fibonaciEnter the number of fibonacci sequences to print: '));
+        Number(n);
+        
+        // Kiểm tra giá trị nhập vào
+        while (isNaN(n) || n <=2) {
+            if (isNaN(n)) {
+                n = prompt('Invalid number, please try again!')
+            } else if (n <= 2) {
+                n = prompt('The number must be larger than 2 Input again')
+            }
+        }
+    
+        // Kiểm tra và hiển thị tổng dãy fibonacci
+        let f1 = 1; let f2 = 1; let fn; let i = 3; let fsum = 2;
+        output5.innerHTML += '<br> Fibonacci thứ 1: 1' + '<br>';
+        output5.innerHTML += 'Fibonacci thứ 2: 1' + '<br>';
+        while(i <= n) {
+            output5.innerHTML += 'Fibonacci thứ ' + i + ': ' + (fn = f1 + f2) + '<br>';
+            f1 = f2
+            f2 = fn 
+            fsum = fsum + fn
+            i++
+        }
+        output5.innerHTML += 'The sum of the first ' + n + ' numbers in the fibonacci sequence is: ' + fsum
+    }
+</script>

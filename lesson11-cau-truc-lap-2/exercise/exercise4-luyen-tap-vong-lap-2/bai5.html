@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 5 Lai suat ngan hang</title>
+</head>
+<body>
+    <p>Bài 5: Viết chương trình tính lãi ngân hàng (lãi mẹ đẻ lại con) khi biết số tiền ban đầu, số tháng cho vay và lãi xuất hàng tháng.</p>
+    Money (VND) <input type="text" id="inputMoney" placeholder="Input principal amount" oninput="formatNumberInput(this)"> <br> <br>
+    Months (3-36) <input type="number" id="inputMonths" placeholder="Input number of months" oninput="limit_Input(this, 3, 36)"> <br> <br>
+    Interest (%) <input type="number" id="inputInterestRate" placeholder="Input monthly interest"> <br> <br>
+    <button type="button" onclick="displayInterestRate()" style="margin-left: 60px;">Display Interest Rate</button>
+    <div id="output3"></div>
+</body>
+</html>
+<script>
+// Bài 5: Viết chương trình tính lãi ngân hàng (lãi mẹ đẻ lại con) khi biết số tiền ban đầu, số tháng cho vay và lãi xuất hàng tháng.
+    
+    // Giới hạn số tháng nhập
+    function limit_Input(element, min, max) {
+        const value = parseInt(element.value);
+        if (value < min) element.value = min;
+        if (value > max) element.value = max; 
+    }
+
+    // tính tổng lãi suất
+    function displayInterestRate() {
+        const money = parseInt(document.getElementById('inputMoney').value);
+        const month = parseInt(document.getElementById('inputMonths').value);
+        const rate = parseInt(document.getElementById('inputInterestRate').value) / 100;
+        const output3 = document.getElementById('output3');
+        Number(money); Number(month); Number(rate);
+
+        let x = money * ((1 + rate)**month);
+        output3.innerHTML += '<br>' + 'A = ' + money + ' x (1 + ' + rate + ')^' + month
+        output3.innerHTML += '<br>' + 'Total amount money after ' + month + ' months is: ' + x.toFixed(0) + ' VND';
+    }
+
+    // // Phân cách số hàng nghìn
+    // function formatNumberInput(input) {
+    //         // Xóa dấu phân cách hiện tại
+    //         let value = input.value.replace(/[,.]/g, '');
+
+    //         // Chuyển đổi thành số
+    //         value = parseFloat(value);
+
+    //         // Kiểm tra nếu là số hợp lệ
+    //         if (!isNaN(value)) {
+    //             // Định dạng lại số với dấu phân cách
+    //             input.value = value.toLocaleString('de-DE'); // Dấu phẩy (US)
+    //             document.getElementById('formattedValue').innerText = input.value;
+    //         } else {
+    //             // Nếu không phải số, xóa nội dung
+    //             input.value = '';
+    //             document.getElementById('formattedValue').innerText = '';
+    //         }
+    //     }
+</script>

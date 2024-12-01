@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise1 - sinh bang cuu -chuong</title>
+</head>
+<body>
+    <h1>Bảng cửu chương</h1>
+</body>
+</html>
+<script>
+    // x hàng tr (8), y cột td (9)
+    let table;
+        table = "<table border='1' width='1000' cellspacing='0' cellpadding='10'>"
+
+    for (x = 1; x <= 9; x++) {
+        table = table + '<tr>';
+
+    for (y = 2; y <= 9; y++) {
+        table = table + '<td>' + y + ' x ' + x + '=' + x*y + '</td>';
+        }
+        table = table + '</tr>';
+    }
+        table = table + '</table>';
+    document.write(table);
+
+</script>

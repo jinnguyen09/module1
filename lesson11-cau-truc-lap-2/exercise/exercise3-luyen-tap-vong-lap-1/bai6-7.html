@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 6 + Bai 7</title>
+</head>
+<body>
+    <p>Bài 6: Tính tổng của 30 số chia hết cho 7 đầu tiên trong các số tự nhiên</p>
+    The sum of 30 first natural numbers divisible by 7 is: <button type="button" onclick="devisableNumber7()">Calculate</button>
+    <p id="output1"></p>
+    <br>
+    <p>Bài 7: Hãy viết một chương trình in ra các số từ 1 đến 100. 
+    Nhưng nếu số chia hết cho 3 thì in ra "Fizz", 5 thì in ra "Buzz" thay vì in ra số đó. 
+    Và nếu số đó chia hết cho cả 3 và 5 thì in ra chữ "FizzBuzz".</p>
+    <button type="button" onclick="countingNumber()">Counting</button>
+    <div id="output2" style="width: 1500px;"></div>
+</body>
+</html>
+<script>
+function devisableNumber7() {
+    const output1 = document.getElementById('output1');
+    output1.innerHTML = '';
+    let sum = 0; 
+    let n = 1;
+
+    for (let i = 7; n <= 30; i += 7, n++) {
+        sum += i;
+        output1.innerHTML += i;
+        if (n < 30) {
+            output1.innerHTML += ' + ';
+        }
+    }
+    output1.innerHTML += ' = ' + (sum); // Hiển thị tổng sau danh sách số
+}
+
+// Bài 7:
+function countingNumber() {
+    const output2 = document.getElementById('output2');
+    output2.innerHTML = '';
+    
+    for (i = 1; i <= 100; i++) {
+        if (i % 3 == 0) {
+            output2.innerHTML += '<span style="color: red;">Fizz</span>';
+        } 
+        else if (i % 5 == 0) {
+            output2.innerHTML += '<span style="color: blue;">Buzz</span>';
+        } else {
+            output2.innerHTML += i;
+        }
+        if (i < 100) {
+            output2.innerHTML += ' + ';
+        }
+    }
+}
+</script>

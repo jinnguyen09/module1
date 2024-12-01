@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 1: In day Fibonacci</title>
+</head>
+<body>
+    <p>Bài 1: In dãy Fibonaci</p>
+    <input type="number" id="inputFibonacci" placeholder="Input number">
+    <button type="button" onclick="displayFibonacci()">Display fibonacci</button>
+    <div id="output1"></div>
+    <br>
+    <p>Bài 2: Tính giai thừa của một số nguyên dương</p>
+    Input a number to calculate that factorial number: <input type="number" id="inputFactorial" placeholder="Input a number">
+    <button type="button" onclick="displayFactorial()">Display factorial</button>
+    <div id="output2"></div>
+</body>
+</html>
+<script>
+    // Bài 1:
+    // dãy fibonancci: 1, 1, 2, 3, 5, 8, 13, ... (fn = fn - 1  + fn - 2)
+    function displayFibonacci() {
+        const output1 = document.getElementById('output1');
+        output1.innerHTML = '';
+        let n = parseInt(document.getElementById('inputFibonacci').value);
+        Number(n);
+        
+        // Kiểm tra giá trị nhập vào
+        if (isNaN(n) || n<= 2) {
+            alert('The number must be larger than 2 Input again')
+            return;
+        }
+    
+        // Kiểm tra và hiển thị dãy fibonacci
+        output1.innerHTML += '<br>' + 'Fibonacci thứ 1: 1' + '<br>';
+        output1.innerHTML += 'Fibonacci thứ 2: 1' + '<br>';
+        
+        let f1 = 1; let f2 = 1; let fn; let i = 3;
+        while(i <= n) {
+            output1.innerHTML += 'Fibonacci thứ ' + i + ': ' + (fn = f1 + f2) + '<br>';
+            f1 = f2
+            f2 = fn 
+            i++
+        }
+    }
+
+    // Bai 2:
+    // công thức: !n = n * (n-1) *(n-2) *...* 1.        
+    function displayFactorial() {
+        const output2 = document.getElementById('output2');
+        output2.innerHTML = '<br>';
+        let n = parseInt(document.getElementById('inputFactorial').value);
+        Number(n);
+
+        if (isNaN(n)) {
+            alert('Invalid number,please try again!')
+        }
+
+        let y;
+        let x = 1;
+        for (y = 1; y <= n; y++) {
+            x *= y
+            output2.innerHTML += y 
+        if (y < n) {
+            output2.innerHTML += ' * '
+        }
+        } output2.innerHTML += ' = ' + x 
+    }
+</script>
