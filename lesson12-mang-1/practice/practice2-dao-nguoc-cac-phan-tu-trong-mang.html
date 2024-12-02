@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Th2 - Đảo ngược các phần tử trong mảng</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    let x = [1, 2, -3, 5, 7, 9, 8, 13, 29, 9, 2003];
+    let first = 0;
+    let last = x.length - 1;
+
+    while (first < last) {
+        let b = x[first];
+        x[first] = x[last];
+        x[last] = b;
+        first++;        
+        last--;
+    }
+document.write(x);
+</script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Th4 - Tim gia tri lon nhat trong mang</title>
+</head>
+<body>  
+    <p>Viết một chương trình JavaScript để tìm giá trị lớn nhất trong mảng cho trước.</p>
+</body>
+</html>
+<script>
+    let x = [-1, 3, -5, 6, 8, 9, 13, 16, -18, -19];
+    let max = x[0];
+    let index = 0;
+    for (let i = 0; i < x.length; i++) {
+        if (max < x[i]) {
+            max = x[i];
+            index = i;
+        }
+    }
+    document.write('Giá trị lớn nhất trong mảng là: ' + max + ' ở vị trí thứ ' + index + ' trong mảng.');
+</script>

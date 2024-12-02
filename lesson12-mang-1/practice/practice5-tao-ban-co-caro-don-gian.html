@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Th5 - Tạo bàn cờ ca rô đơn giản</title>
+</head>
+<body>
+    <h1>Caro game simple</h1>
+    <hr>
+    <div id="caroBoard"></div>
+    <br>
+    <input type="button" value="Change value" onclick="changeValue()">
+</body>
+</html>
+<script>
+    const caroBoard = document.getElementById('caroBoard')
+    let board = [];
+    let data = '';
+    for (let i = 0; i < 5; i++) {
+        board[i] = [0, 0, 0, 0, 0] 
+    }
+    for (let i = 0; i < 5; i++) {
+        data += '<br>';
+        for (let j = 0; j < 5; j++) {
+            data += board[i][j] + "&nbsp;&nbsp;";
+        }
+    }
+    caroBoard.innerHTML= data;
+
+    function changeValue() {
+        let positionX = prompt("X: ");  
+        let positionY = prompt("Y: ");
+        data = "";
+        board[positionX][positionY] = "x";
+        for (let i = 0; i < 5; i++) {
+            data += "<br/>";
+            for (let j = 0; j < 5; j++) {
+                data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+            }
+        }
+        caroBoard.innerHTML = "<hr/>" + data;
+    }
+</script>
