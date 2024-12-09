@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>On tap</title>
+    <style>
+        /* tag selector */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Bảng giá xe</h1>
+<div id="total"></div>
+<div id="result"></div>
+<script>
+    let goods = [];
+
+    // class (es6)
+    class Products {
+        constructor(code, name, price, quantity) {
+            this.code = code;
+            this.name = name;
+            this.price = price;
+            this.quantity = quantity;
+        }
+    }
+
+    goods.push(new Products('HK01', 'Huyndai Kona', '799.000.000', '21'));
+    goods.push(new Products('TC05', 'Toyota cross', '1.089.000.000', '18'));
+    goods.push(new Products('Mc200', 'Mercerdes c200', '1.159.000.000', '5'));
+    goods.push(new Products('HD09', 'Honda Civic', '866.000.000', '15'));
+    goods.push(new Products('KIA06', 'KIA Sorento ', '1.299.000.000', '9'));
+
+    const result = document.getElementById("result");
+    document.getElementById("total").innerHTML = `<p>Tổng số sản phẩm: ${goods.length}</p>`;
+
+    let table = '<table><tr><th>Mã sản phẩm</th><th>Tên xe</th><th>Giá</th><th>Số lượng</th></tr>';
+
+    for (let i = 0; i < goods.length; i++) {
+        table += `<tr>
+            <td>${goods[i].code}</td>
+            <td>${goods[i].name}</td>
+            <td>${goods[i].price + ' triệu VND'}</td>
+            <td>${goods[i].quantity }</td>
+        </tr>`;
+    }
+    table += '</table>';
+    result.innerHTML = table;
+    console.log(goods);
+</script>
+</body>
+</html>
