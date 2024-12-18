@@ -30,29 +30,30 @@
             }
             output1.innerHTML += '<br>'; // Xuống dòng sau mỗi dòng
         }
+
         
         // Tam giác vuông góc vuông ở dưới bên trái
         output1.innerHTML += '<br>';
         for (i = 1; i <= 5; i++) { // Số dòng của tam giác
             for (y = 5; y >= i; y--) { // số lượng dấu '*' trên mỗi dòng
-                output1.innerHTML += '*';
-            }
-            output1.innerHTML += '<br>'; // Xuống dòng sau mỗi dòng
+            output1.innerHTML += '*';
         }
-
-        // Tam giác vuông góc vuông ở trên bên phải
+        output1.innerHTML += '<br>'; // Xuống dòng sau mỗi dòng
+        }
+        
+        // Tam giác vuông, góc vuông ở trên bên phải
         output1.innerHTML += '<br>';
         for (i = 1; i <= 5; i++) { 
             for (y = 5; y > i; y--) { // In khoảng trắng
                 output1.innerHTML += '&nbsp;&nbsp;';
             }
             for (y = 1; y <= i; y++) { // In dấu '*'
-                output1.innerHTML += '*';
-            }
-            output1.innerHTML += '<br>';
-        } 
-
-        // Tam giác vuông góc vuông ở dưới bên phải
+            output1.innerHTML += '*';
+        }
+        output1.innerHTML += '<br>';
+    } 
+    
+        // Tam giác vuông, góc vuông ở dưới bên phải
         output1.innerHTML += '<br>';
         for (i = 1; i <= 5; i++) {
             for(y = 1; y < i; y++) {
@@ -90,4 +91,17 @@
             output2.innerHTML += '<br>'; // Xuống dòng sau mỗi dòng
         }
     }
+
+    function staircase(n) {
+    let result = ""; 
+    for (let i = 1; i <= n; i++) {
+        let spaces = " ".repeat(n - i); 
+        let hashes = "#".repeat(i);     
+        result += spaces + hashes + "\n"; 
+    }
+    console.log(result); 
+}
+let n = 6;
+console.log(staircase(n));
+
 </script>

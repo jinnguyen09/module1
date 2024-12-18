@@ -1,0 +1,77 @@
+   body {
+    font-family: Arial, sans-serif;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.images-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.images-container img {
+    padding: 10px;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.game-container {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    flex-shrink: 0;
+}
+
+button {
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.dice-container {
+    margin: 20px 0;
+}
+
+.dice {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.balance, .betting, .deposit {
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 100px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.deposit button {
+    background-color: #FF5722;
+}
+
+.deposit button:hover {
+    background-color: #e64a19;
+}
