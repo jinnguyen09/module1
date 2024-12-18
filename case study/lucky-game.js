@@ -44,7 +44,7 @@ function rewindAudio() {
     audio.currentTime -= 10;
 }
 function forwardAudio() {
-    audio.currentTime += 10;
+    audio.currentTime += 10; 
 }
 
 let balance = 5000;  
