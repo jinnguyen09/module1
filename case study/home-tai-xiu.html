@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+button {
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.dice-container {
+    margin: 20px 0;
+}
+
+.dice {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.balance, .betting, .deposit {
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 100px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.deposit button {
+    background-color: #FF5722;
+}
+
+.deposit button:hover {
+    background-color: #e64a19;
+}
+</style>
+<body>
+    <div class="game-container">
+        <h1>Lucky game</h1>
+
+        <!-- Hiển thị số tiền của người chơi -->
+        <div class="balance">
+            <h3>Số tiền hiện tại: <span id="balance"></span> VND</h3>
+        </div>
+
+        <!-- Phần đặt cược -->
+        <div class="betting">
+            <h3>Nhập số tiền cược</h3>
+            <input type="number" id="bet-amount" placeholder="Số tiền cược" min="5000" step="100">
+        </div>
+
+        <div class="game-controls">
+            <h3>Chọn Tài (11-18) hoặc Xỉu (3-10)</h3>
+            <button onclick="playGame('Tai')">Chọn Tài</button>
+            <button onclick="playGame('Xiu')">Chọn Xỉu</button>
+        </div>
+
+        <div class="dice-container">
+            <img id="dice1" class="dice" src="so1.png" alt="Dice">
+            <img id="dice2" class="dice" src="so2.png" alt="Dice">
+            <img id="dice3" class="dice" src="so3.png" alt="Dice">
+        </div>
+
+        <!-- Thông báo kết quả -->
+        <h2 id="result-message"></h2>
+
+        <!-- Phần nạp tiền -->
+        <div class="deposit">
+            <h3>Nạp tiền vào trò chơi</h3>
+            <input type="number" id="deposit-amount" placeholder="Số tiền muốn nạp" min="10000" step="100">
+            <button onclick="depositMoney()">Nạp tiền</button>
+        </div>
+        <div class="widrawMoney">
+            <h3>Rút tiền</h3>
+            <input type="number" id="widrawMoney" placeholder="Số tiền muốn rút" min="10000" step="100">
+            <button onclick="depositMoney()">Rút tiền</button>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+
+let balance = 0;  
+let currentBet = 0; 
+
+function updateBalance() {
+    document.getElementById('balance').textContent = balance;
+}
+
+// Chức năng quay xúc xắc và xác định kết quả
+function rollDice() {
+    const dice1 = Math.floor(Math.random() * 6) + 1;
+    const dice2 = Math.floor(Math.random() * 6) + 1;
+    const dice3 = Math.floor(Math.random() * 6) + 1;
+
+    animateDice(dice1, dice2, dice3);
+
+    return dice1 + dice2 + dice3;
+}
+
+function animateDice(dice1, dice2, dice3) {
+    const diceElements = document.querySelectorAll('.dice');
+    diceElements.forEach(dice => {
+        dice.style.transform = 'rotate(360deg)';
+    });
+
+    if(dice1 == 1) {
+        dice1 = 'so1.png';
+    } else if(dice1 == 2){
+        dice1 = 'so2.png';
+    } else if(dice1 == 3){
+        dice1 = 'so3.png';
+    } else if(dice1 == 4){
+        dice1 = 'so4.png';
+    } else if(dice1 == 5){
+        dice1 = 'so5.png';
+    } else {
+        dice1 = 'so6.png';
+    }
+
+    if(dice2 == 1) {
+        dice2 = 'so1.png';
+    } else if(dice2 == 2){
+        dice2 = 'so2.png';
+    } else if(dice2 == 3){
+        dice2 = 'so3.png';
+    } else if(dice2 == 4){
+        dice2 = 'so4.png';
+    } else if(dice2 == 5){
+        dice2 = 'so5.png';
+    } else {
+        dice2 = 'so6.png';
+    }
+
+    if(dice3 == 1) {
+        dice3 = 'so1.png';
+    } else if(dice3 == 2){
+        dice3 = 'so2.png';
+    } else if(dice3 == 3){
+        dice3 = 'so3.png';
+    } else if(dice3 == 4){
+        dice3 = 'so4.png';
+    } else if(dice3 == 5){
+        dice3 = 'so5.png';
+    } else {
+        dice3 = 'so6.png';
+    }
+
+    setTimeout(() => {
+        document.getElementById('dice1').src = dice1;
+        document.getElementById('dice2').src = dice2;
+        document.getElementById('dice3').src = dice3;
+        diceElements.forEach(dice => {
+            dice.style.transform = 'rotate(0deg)';
+        });
+    }, 500);
+}
+
+function playGame(choice) {
+    const betAmount = parseInt(document.getElementById('bet-amount').value);
+
+    // Kiểm tra nếu số tiền cược hợp lệ
+    if (betAmount <= 0 || isNaN(betAmount)) {
+        alert("Vui lòng nhập số tiền cược hợp lệ.");
+        return;
+    }
+
+    if (betAmount > balance) {
+        alert("Bạn không có đủ tiền để cược.");
+        return;
+    }
+
+    currentBet = betAmount;
+    balance -= betAmount;
+
+    // Quay xúc xắc
+    const total = rollDice();
+    
+    // Kiểm tra kết quả Tài hoặc Xỉu
+    let resultMessage = '';
+    if (total >= 11 && choice === 'Tai') {
+        balance += currentBet * 2;  // Thắng Tài, cộng tiền cược nhân đôi
+        resultMessage = `Bạn chọn Tài và thắng! Tổng điểm: ${total}. Bạn đã nhận ${currentBet * 2} VND.`;
+    } else if (total <= 10 && choice === 'Xiu') {
+        balance += currentBet * 2;  // Thắng Xỉu, cộng tiền cược nhân đôi
+        resultMessage = `Bạn chọn Xỉu và thắng! Tổng điểm: ${total}. Bạn đã nhận ${currentBet * 2} VND.`;
+    } else {
+        resultMessage = `Tổng điểm: ${total}. Bạn thua, thử lại! Bạn đã mất ${currentBet} VND.`;
+    }
+
+    // Hiển thị kết quả và cập nhật số dư
+    document.getElementById('result-message').textContent = resultMessage;
+    updateBalance();
+}
+
+// Chức năng nạp tiền
+function depositMoney() {
+    const depositAmount = parseInt(document.getElementById('deposit-amount').value);
+    if (depositAmount && depositAmount >= 10000) {
+        balance += depositAmount;
+        document.getElementById('deposit-amount').value = '';
+        updateBalance();
+        alert(`Bạn đã nạp ${depositAmount} VND vào tài khoản!`);
+    } else {
+        alert("Vui lòng nhập số tiền hợp lệ (tối thiểu 10,000 VND).");
+    }
+}
+
+function withdrawMoney() {
+    const depositAmount = parseInt(document.getElementById('deposit-amount').value);
+    
+    if (depositAmount && depositAmount >= 10000) {
+        balance += depositAmount;
+        document.getElementById('deposit-amount').value = '';
+        updateBalance();
+        alert(`Bạn đã rút ${depositAmount} VND về tài khoản ngân hàng!`);
+    } else {
+        alert("Vui lòng nhập số tiền hợp lệ (Rút tối thiểu 50,000 VND).");
+    }
+}
+
+// Cập nhật số tiền ban đầu
+updateBalance();
+</script>
