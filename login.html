@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Nhập với Animation</title>
+    <style>
+        /* Đặt kích thước và căn giữa form */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f2f5;
+        }
+
+        /* Form container */
+        .login-form {
+            width: 350px;
+            padding: 40px 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Tiêu đề */
+        .login-form h2 {
+            margin: 0 0 20px;
+            color: #333;
+            font-weight: 600;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        /* Animation của label */
+        .login-form .input-container {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        /* Các input field */
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        /* Tạo hiệu ứng label trượt lên */
+        .login-form input[type="text"]:focus ~ label,
+        .login-form input[type="password"]:focus ~ label,
+        .login-form input[type="text"]:valid ~ label,
+        .login-form input[type="password"]:valid ~ label {
+            top: -10px;
+            left: 10px;
+            font-size: 14px;
+            color: #4CAF50;
+        }
+
+        /* Định dạng label ban đầu */
+        .login-form label {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            color: #999;
+            pointer-events: none;
+            transition: 0.3s ease all;
+        }
+
+        /* Nút đăng nhập */
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #4CAF50, #3a8d41);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-form button:hover {
+            background: linear-gradient(90deg, #3a8d41, #4CAF50);
+        }
+
+        /* Link quên mật khẩu */
+        .login-form .forgot-password {
+            display: block;
+            margin-top: 10px;
+            color: #4CAF50;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .login-form .forgot-password:hover {
+            color: #3a8d41;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-form">
+        <h2>Đăng Nhập</h2>
+        <form action="#">
+            <div class="input-container">
+                <input type="text" required>
+                <label>Tên đăng nhập</label>
+            </div>
+            <div class="input-container">
+                <input type="password" required>
+                <label>Mật khẩu</label>
+            </div>
+            <button type="submit">Đăng Nhập</button>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        </form>
+    </div>
+
+</body>
+</html>

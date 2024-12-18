@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice 3: Tìm giá trị nhỏ nhất của mảng</title>
+</head>
+<body>
+    <p>Nhập giá trị vào mảng (các số cách nhau bởi dấu phẩy):</p>
+    <input type="text" id="input">
+    <button type="button" onclick="findMin()">Check</button>
+
+    <script>
+        function findMin() {
+            let input = document.getElementById('input').value;
+            let arr = input.split(","); // Chuyển đổi thành mảng số
+            console.log(arr)
+
+            // Kiểm tra mảng xem cos hợp lệ không
+            if (arr.length === 0 || arr.some(isNaN)) {
+                alert('Vui lòng nhập một mảng hợp lệ.');
+                return;
+            }
+
+            let min = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+
+            // Hiển thị kết quả
+            alert('Giá trị nhỏ nhất trong mảng là: ' + min);
+        }
+    </script>
+</body>
+</html>

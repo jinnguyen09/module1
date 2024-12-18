@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Conversion</title>
+</head>
+<body>
+    <h1>Temperature Conversion</h1>
+    <div id="output"></div>
+
+    <script>
+        // Định nghĩa lớp Temperature
+        class Temperature {
+            constructor(celsius) {
+                if (celsius < -273) {
+                    document.write("Temperature cannot be lower than -273°C!");
+                }
+                this.celsius = celsius;
+            }
+
+            toFahrenheit() {
+                return (this.celsius * 9 / 5) + 32;
+            }
+
+            toKelvin() {
+                return this.celsius + 273.15;
+            }
+        }
+
+        const temp = new Temperature(25);
+
+        const fahrenheit = temp.toFahrenheit();
+        const kelvin = temp.toKelvin();
+
+        const outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = `
+            <p>Nhiệt độ gốc: ${temp.celsius}°C</p>
+            <p>Nhiệt độ Fahrenheit: ${fahrenheit.toFixed(2)}°F</p>
+            <p>Nhiệt độ Kelvin: ${kelvin.toFixed(2)}K</p>
+        `;
+    </script>
+</body>
+</html>

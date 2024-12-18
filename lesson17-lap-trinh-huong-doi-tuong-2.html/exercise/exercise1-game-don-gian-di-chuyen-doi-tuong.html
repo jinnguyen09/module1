@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1 - Simple Object Movement</title>
+    <style>
+        #game {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="game"></div>
+    <input type="button" value="Move right" onclick="moveRight()">
+    <input type="button" value="Move left" onclick="moveLeft()">
+    <input type="button" value="Move up" onclick="moveUp()">
+    <input type="button" value="Move down" onclick="moveDown()">   
+</body>
+<script>
+    function Hero(image, top, left, size) {
+        this.image = image;
+        this.top = top;
+        this.left = left;
+        this.size = size;
+
+        this.getHeroElement = function() {
+            return (
+                '<img width="' +
+                this.size +
+                '"' +
+                ' height="' +
+                this.size +
+                '"' +
+                ' src="' +
+                this.image +
+                '"' +
+                ' style="position:absolute; top:' +
+                this.top +
+                'px; left:' +
+                this.left +
+                'px;" />'
+            );
+        };
+
+        this.moveRight = function() {
+            this.left += 20;
+            console.log("Moving right: " + this.left);
+        };
+
+        this.moveLeft = function() {
+            this.left = Math.max(0, this.left - 20); 
+            console.log("Moving left: " + this.left);
+        };
+
+        this.moveUp = function() {
+            this.top = Math.max(0, this.top - 20);
+            console.log("Moving up: " + this.top);
+        };
+
+        this.moveDown = function() {
+            this.top += 20;
+            console.log("Moving down: " + this.top);
+        };
+    }
+
+    let hero = new Hero("image.png", 20, 30, 100);
+
+    function renderHero() {
+        document.getElementById("game").innerHTML = hero.getHeroElement();
+        setTimeout(start, 500);
+    }
+
+    function moveRight() {
+        if (hero.left + hero.size < window.innerWidth) {
+            hero.moveRight();
+            renderHero();
+        }
+    }
+
+    function moveLeft() {
+        if (hero.left > 0) {
+            hero.moveLeft();
+            renderHero();
+        }
+    }
+
+    function moveUp() {
+        if (hero.top > 0) {
+            hero.moveUp();
+            renderHero();
+        }
+    }
+
+    function moveDown() {
+        if (hero.top + hero.size < 500) {
+            hero.moveDown();
+            renderHero();
+        }
+    }
+
+    renderHero();
+</script>
+</html>

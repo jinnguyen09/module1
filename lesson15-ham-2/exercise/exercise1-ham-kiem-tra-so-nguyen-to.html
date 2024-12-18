@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1 - ham kiem tra so nguyen to</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let number = parseInt(prompt('Enter number need to check: '));
+
+    function isPrime(number) {
+        if (number == 2 || number == 3) {
+            alert(number + ' is a prime number');
+        } else if (number % 2 == 0 || number % 3 == 0 || number <= 1) {
+            alert(number + ' is not a prime number');
+            }
+        else {
+            alert(number + ' is a prime number');
+        }
+    }
+    isPrime(number)
+</script>

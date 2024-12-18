@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise 3 - Phat trien ung dung cong tac va bong</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="result"></p>
+    <script>
+        
+// Lớp Bulb (Bóng đèn)
+class Bulb {
+    constructor() {
+        this.isOn = false; // Trạng thái ban đầu của bóng đèn (tắt)
+    }
+
+    turnOn() {
+        this.isOn = true; // Bật bóng đèn
+        console.log("Bulb is ON");
+    }
+
+    turnOff() {
+        this.isOn = false; // Tắt bóng đèn
+        console.log("Bulb is OFF");
+    }
+}
+
+// Lớp Switch (Công tắc)
+class Switch {
+    constructor() {
+        this.isOn = false; // Trạng thái ban đầu của công tắc (tắt)
+        this.connectedBulb = null; // Bóng đèn được kết nối
+    }
+
+    connectToBulb(bulb) {
+        this.connectedBulb = bulb; // Kết nối công tắc với bóng đèn
+    }
+
+    toggle() {
+        if (this.connectedBulb) {
+            this.isOn = !this.isOn; // Đổi trạng thái công tắc
+            if (this.isOn) {
+                this.connectedBulb.turnOn(); // Nếu công tắc bật, bật bóng đèn
+            } else {
+                this.connectedBulb.turnOff(); // Nếu công tắc tắt, tắt bóng đèn
+            }
+        } else {
+            console.log("No bulb connected to the switch!");
+        }
+    }
+}
+
+// Tạo đối tượng bóng đèn và công tắc
+let bulb = new Bulb();
+let lightSwitch = new Switch();
+
+// Kết nối công tắc với bóng đèn
+lightSwitch.connectToBulb(bulb);
+
+// Bật tắt công tắc 10 lần
+for (let i = 0; i < 10; i++) {
+    console.log(`Toggle ${i + 1}:`);
+    lightSwitch.toggle();
+}
+    </script>
+</body>
+</html>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 2: Từ điển</title>
+</head>
+<body>
+    <h1>English to Vietnamese Dictionary</h1>
+    <label for="input">Input words:</label>
+    <input type="text" id="input" placeholder="Enter an English word">
+    <input type="button" onclick="translateWords()" value="Translate">
+    <br><p>Try: banana, apple, orange, pen, pencil, book</p><br>
+    <div id="output" style="font-size: 18px; color: blue;"></div>
+</body>
+</html>
+<script>
+    function translateWords() {
+        let words = document.getElementById("input").value.trim().toLowerCase(); 
+        let eng = ["banana", "apple", "orange", "pen", "pencil", "book"];
+        let vie = ["Quả chuối", "Quả táo", "Quả cam", "Cái bút", "Cái bút chì", "Quyển sách"];
+        let y = "Can't find this word in dictionary!"; 
+
+        for (let x = 0; x < eng.length; x++) { 
+            if (words === eng[x]) {
+                y = vie[x];
+                break;
+            }
+        }
+
+        document.getElementById("output").innerHTML = '<b> Result: </b>' + y;
+    }
+</script>

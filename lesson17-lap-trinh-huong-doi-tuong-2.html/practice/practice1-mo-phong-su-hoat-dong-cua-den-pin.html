@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice 1: Simulate Flashlight</title>
+</head>
+<body>
+    <h1>Flashlight Simulation</h1>
+    <button onclick="flashLamp.turnOn(); flashLamp.light();">Turn On</button>
+    <button onclick="flashLamp.turnOff(); flashLamp.light();">Turn Off</button>
+    <button onclick="alert('Battery energy: ' + flashLamp.getBatteryInfo());">Check Battery</button>
+</body>
+<script>
+    // Battery Class
+    class Battery {
+        constructor(energy) {
+            this.energy = energy;
+        }
+        getEnergy() {
+            return this.energy;
+        }
+        decreaseEnergy() {
+            if (this.energy > 0) {
+                this.energy--;
+            } else {
+                alert("Battery is dead!");
+            }
+        }
+    }
+
+    // FlashLamp Class
+    class FlashLamp {
+        constructor(battery) {
+            this.battery = battery; 
+            this.status = false;  
+        }
+        getBatteryInfo() {
+            return this.battery.getEnergy();
+        }
+        light() {
+            if (this.status) {
+                if (this.battery.getEnergy() > 0) {
+                    alert("Lighting...");
+                    this.battery.decreaseEnergy();
+                } else {
+                    alert("No energy left in the battery!");
+                }
+            } else {
+                alert("Not lighting.");
+            }
+        }
+        turnOn() {
+            this.status = true;
+        }
+        turnOff() {
+            this.status = false;
+        }
+    }
+
+    const battery = new Battery(100);
+    const flashLamp = new FlashLamp(battery);
+</script>
+</html>

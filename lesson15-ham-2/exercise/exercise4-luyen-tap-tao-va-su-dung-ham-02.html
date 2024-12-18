@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square Calculator</title>
+</head>
+<body> 
+    <!-- Bài 1 -->
+    <div> <p style="font-weight: bold;">Ex 1: Square calculator</p>
+        <p>The square of <input type="number" oninput="calculate()" id="input1"> is <span id="output1" style="font-weight: bold;"></span></p> 
+    </div>
+    <!-- Bài 2 --> <br>
+    <div> <p style="font-weight: bold;">Ex 2: Premeter and are of circle calculator</p>
+        <p>The premeter of circle with radius <input type="number" oninput="calculatePremeter()" id="input2"> cm is <span id="output2" style="font-weight: bold;"></span></p>
+        <p>The area of circle with radius <input type="number" oninput="calculateArea()" id="input3"> cm is <span id="output3" style="font-weight: bold;"></span></p>
+    </div>
+    <!-- Bài 3 --> <br>
+    <div> <p style="font-weight: bold;">Ex 3: Factorial calculator</p>
+        <p>The factorial of <input type="number" oninput="calculateFactorial()" id="input4"> is <span id="output4" style="font-weight: bold;"></span></p> 
+    </div>
+    <!-- Bài 4 --> <br>
+    <div> <p style="font-weight: bold;">Ex 4: Check data</p>
+        <p><input type="text" oninput="checkInput()" id="input5"> <span id="output5" style="font-weight: bold;"></span></p> 
+    </div>
+    <!-- Bài 5 --> <br>
+    <div>
+        <p style="font-weight: bold;">Ex 5: Find the Minimum Value</p>
+        <p>Enter three integers:</p>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+        <input type="number" id="num3" placeholder="Enter third number">
+        <br><br>
+        <button onclick="findMinimum()">Find Minimum</button>
+        <p id="result"></p>
+    </div>
+    <!-- Bài 6 --> <br>
+    <div>
+        <p style="font-weight: bold;">Ex 6: Find the Minimum Value</p>
+        <input type="number" id="input6" placeholder="Enter number" oninput="checkNumber()"> <span id="output6" style="font-weight: bold;"></span>
+    </div>
+    <!-- Bài 7 --> <br>
+    <div>
+        <p style="font-weight: bold;">Ex 7: Swap numbers</p>
+        A = <input type="number" id="numberA" placeholder="Enter number A"> 
+        B = <input type="number" id="numberB" placeholder="Enter number B"> 
+        <button onclick="swap()">Swap</button>
+        <span id="output7" style="font-weight: bold;"></span>
+    </div>
+    <!-- Bài 8 -->
+    <div>
+        <p style="font-weight: bold;">Ex 8: Reverse Array of numbers</p>
+        <p>Enter numbers separated by commas (e.g., 1,2,3,4,5):</p>
+        <input type="text" id="inputArray" placeholder="Enter numbers">
+        <button onclick="reverseUserArray()">Reverse Array</button>
+        <p id="output8"></p>
+    </div>
+    <div>
+        <p style="font-weight: bold;">Ex 9: Check Character in Array</p>
+        <p>Enter characters separated by commas (e.g., a,b,c,a,d,a):</p>
+        <input type="text" id="inputArray" placeholder="Enter characters">
+        <p>Enter a character to check:</p>
+        <input type="text" id="inputChar" placeholder="Enter a character">
+        <button onclick="checkCharacter()">Check</button>
+        <p id="output9"></p>
+    </div>
+</body>
+</html>
+
+<script>
+    // Bài 1:
+    // Hàm tính bình phương
+    function squareNumbers(number) {
+        return number * number;
+    }
+    // Hàm xử lý khi người dùng nhập
+    function calculate() {
+        let input1 = parseInt(document.getElementById('input1').value);
+
+        if (isNaN(input1)) {
+            document.getElementById('output1').innerHTML = "Please enter a valid number";
+        } else {
+            document.getElementById('output1').innerHTML = squareNumbers(input1);
+        }
+    }
+
+    // Bài 2: 
+    function premeter(radius) {
+        return (radius * 2) * 3.14
+    }
+    function are(radius) {
+        return (radius * radius) * 3.14
+    }
+    function calculatePremeter() {
+        let input2 = parseInt(document.getElementById('input2').value);
+        
+        if (isNaN(input2)) {
+            document.getElementById('output2').innerHTML = "Please enter a valid number";
+        } else {
+        document.getElementById('output2').innerHTML = premeter(input2);
+        }
+    }
+    function calculateArea() {
+        let input3 = parseInt(document.getElementById('input3').value);
+        
+        if (isNaN(input3)) {
+            document.getElementById('output3').innerHTML = "Please enter a valid number";
+        } else {
+        document.getElementById('output3').innerHTML = premeter(input3);
+        }
+    }
+
+    // Bài 3: 
+    function factorial(number) {
+        for (i = (number-1); i > 0; i--) {
+            number = number * i
+        }
+        return number;
+    }
+    function calculateFactorial() {
+        let input4 = parseInt(document.getElementById('input4').value);
+
+        if (isNaN(input4)) {
+            document.getElementById('output4').innerHTML = "Please enter a valid number";
+        } else {
+            document.getElementById('output4').innerHTML = factorial(input4);
+        }
+    }
+
+    // Bài 4: 
+     // Hàm kiểm tra giá trị nhập vào
+     function checkInput() {
+        let input5 = document.getElementById('input5').value;
+
+        // Kiểm tra giá trị và hiển thị kết quả
+        if (isNaN(input5) || input5.trim() === "") {
+            document.getElementById('output5').innerHTML = "False (Not a number)";
+        } else {
+            document.getElementById('output5').innerHTML = "True (Valid number)";
+        }
+    }
+
+    // Bài 5: 
+    function findMin(a, b, c) {
+    // Kiểm tra giá trị nhập vào có phải là số nguyên
+    if (!Number.isInteger(a) || !Number.isInteger(b) || !Number.isInteger(c)) {
+        return "Please provide three integers!";
+    }
+
+    // Tìm giá trị nhỏ nhất
+    return Math.min(a, b, c);
+    }      
+    
+    function findMinimum() {
+        let num1 = parseInt(document.getElementById('num1').value);
+        let num2 = parseInt(document.getElementById('num2').value);
+        let num3 = parseInt(document.getElementById('num3').value);
+
+    document.getElementById('result').innerHTML = `The minimum value is: ${findMin(num1, num2, num3)}`;
+    }
+
+    // Bài 6: 
+    function checkNumber() {
+        let input6 = parseInt(document.getElementById('input6').value);
+
+        if (Number.isInteger(input6) && input6 > 0) {
+            document.getElementById('output6').innerHTML = 'True';
+        } else {
+            document.getElementById('output6').innerHTML = 'False';
+        }
+    }    
+
+    // Bài 7: 
+    function swapNumbers(a, b) {
+    let temp = a;
+    a = b;
+    b = temp;
+
+    return [a, b];
+    }
+    function swap() {
+        numberA = parseInt(document.getElementById('numberA').value);
+        numberB = parseInt(document.getElementById('numberB').value);
+
+        let result = swapNumbers(numberA, numberB);
+
+        document.getElementById('output7').innerHTML = "After swapping: A = " + result[0] + ", B = " + result[1];
+    }
+
+    //Bài 8:
+    function reverseArray(arr) {
+        return arr.reverse();
+    }
+    function reverseUserArray() {
+        let inputArray = document.getElementById('inputArray').value;
+        let a = inputArray.split(',');
+
+        document.getElementById('output8').innerHTML = "Reversed Array: " + reverseArray(a);
+    }
+
+    // Bài 9:
+    function countCharacterOccurrences(arr, char) {
+            let count = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === char) {
+                    count++;
+                }
+            }
+            return count > 0 ? count : -1;
+        }
+
+    function checkCharacter() {
+        let inputArray = document.getElementById('inputArray').value.split(',').map(el => el.trim());
+        let inputChar = document.getElementById('inputChar').value;
+
+        let result = countCharacterOccurrences(inputArray, inputChar);
+
+        document.getElementById('output').innerHTML = result === -1 
+            ? `The character '${inputChar}' is not in the array.` 
+            : `The character '${inputChar}' appears ${result} times in the array.`;
+    }
+</script>

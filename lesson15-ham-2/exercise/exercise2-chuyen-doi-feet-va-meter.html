@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2 chuyen doi giua feet va meter</title>
+</head>
+<body>
+    <p id="feet"></p>
+    <p id="meter"></p>
+</body>
+</html>
+<script>
+    let feet = parseInt(prompt("Enter feet to convert into meter: "));
+    let meter = parseInt(prompt("Enter meter to convert into feet: "));
+
+    function feetToMeter(feet) {
+        return feet * 0.305;
+    }
+    function meterTofeet(meter) {
+        return meter * 3.279; 
+    }
+    
+    document.getElementById('feet').innerHTML = feet + ' feet = ' + feetToMeter(feet) + ' meter';
+    document.getElementById('meter').innerHTML = meter + ' meter = ' + meterTofeet(meter) + ' feet';
+</script>

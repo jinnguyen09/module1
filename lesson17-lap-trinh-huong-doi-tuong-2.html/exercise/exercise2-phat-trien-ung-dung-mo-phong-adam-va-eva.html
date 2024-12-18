@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2 - Phát triển ứng dụng mô phỏng Adam và Eva</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    class Apple {
+    constructor() {
+        this.weight = 10; // Khối lượng mặc định của quả táo
+    }
+
+    getWeight() {
+        return this.weight; // Lấy khối lượng hiện tại của quả táo
+    }
+
+    decreaseWeight() {
+        if (this.weight > 0) {
+            this.weight--; // Giảm khối lượng quả táo đi 1
+        }
+    }
+}
+
+class Human {
+    constructor(name, gender, weight) {
+        this.name = name; // Tên
+        this.gender = gender; // Giới tính
+        this.weight = weight; // Cân nặng ban đầu
+    }
+
+    speak(words) {
+        document.write(`${this.name} says: "${words}`); // Hiển thị chuỗi nói
+    }
+
+    eatApple(apple) {
+        if (apple.getWeight() > 0) {
+            apple.decreaseWeight(); // Ăn một miếng táo (giảm 1 đv khối lượng táo)
+            this.weight++; // Tăng cân nặng của người ăn
+            document.write(`${this.name} ate a piece of the apple. Current weight: ${this.weight} kg. <br><br>`);
+        } else {
+            document.write(`${this.name} says: "No more apple to eat!" <br>`);
+        }
+    }
+
+    checkAppleWeight(apple) {
+        document.write(`${this.name} checks the apple. Remaining weight: ${apple.getWeight()} units. <br>`);
+    }
+
+    getInfo() {
+        document.write(`Name: ${this.name}, Gender: ${this.gender}, Weight: ${this.weight} kg. <br><br>`);
+    }
+}
+
+// Tạo đối tượng Adam và Eva
+let adam = new Human("Adam", "Male", 70);
+let eva = new Human("Eva", "Female", 55);
+
+// Tạo một quả táo
+let apple = new Apple();
+
+// Hiển thị thông tin ban đầu
+adam.getInfo();
+eva.getInfo();
+adam.checkAppleWeight(apple);
+
+// Adam và Eva ăn táo
+while (apple.getWeight() > 0) {
+    adam.eatApple(apple); // Adam ăn một miếng
+    eva.checkAppleWeight(apple); // Eva kiểm tra khối lượng táo
+    eva.eatApple(apple); // Eva ăn một miếng
+    adam.checkAppleWeight(apple); // Adam kiểm tra khối lượng táo
+}
+
+// Hiển thị thông tin cuối cùng
+adam.getInfo();
+eva.getInfo();
+</script>

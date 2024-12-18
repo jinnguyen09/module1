@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice - Vẽ hình Canvas</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="1000" height="1000"></canvas>
+</body>
+</html>
+<script>
+      // Lấy canvas và ngữ cảnh vẽ 2D
+      const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Vẽ hình chữ nhật và hình vuông
+        ctx.fillStyle = "blue"; // Màu tô
+        ctx.fillRect(50, 50, 100, 70); // (x, y, width, height)
+
+        // Bắt đầu vẽ đường thẳng
+        ctx.beginPath(); // Bắt đầu một đường mới
+        ctx.moveTo(200, 50); // Điểm bắt đầu của đường thẳng (x, y)
+        ctx.lineTo(400, 50); // Điểm kết thúc của đường thẳng (x, y)
+        ctx.lineWidth = 2; // Độ dày của đường thẳng
+        ctx.strokeStyle = "red"; // Màu của đường thẳng
+        ctx.stroke(); // Thực hiện vẽ đường
+
+        // Vẽ đường viền hình chữ nhật và hình vuông
+        ctx.beginPath();
+        ctx.strokeStyle = "red";
+        ctx.strokeRect(500, 50, 100, 100)
+
+        // Vẽ hình tròn
+        ctx.beginPath();
+        ctx.arc(300, 300, 50, 0, 2 * Math.PI); // (x, y, bán kính, góc bắt đầu, góc kết thúc)
+        ctx.fillStyle = "purple"; // Màu tô
+        ctx.fill();
+        ctx.strokeStyle = "black"; // Màu viền
+        ctx.stroke();
+
+</script>

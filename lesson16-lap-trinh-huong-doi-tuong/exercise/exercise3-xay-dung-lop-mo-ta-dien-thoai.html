@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3 Xây dựng lớp mô tả điện thoại</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Phone Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .mobile {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .actions {
+            margin-top: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 10px;
+            background: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mobile Phone Simulation</h1>
+
+    <div id="nokia" class="mobile">
+        <h2>Nokia</h2>
+        <p>Pin: <span id="nokia-battery">100</span></p>
+        <p>Status: <span id="nokia-status">Off</span></p>
+        <textarea id="nokia-draft" placeholder="Type a message..."></textarea>
+        <div class="actions">
+            <button onclick="togglePower('nokia')">Power On/Off</button>
+            <button onclick="chargeBattery('nokia')">Charge</button>
+            <button onclick="sendMessage('nokia', 'iphone')">Send Message</button>
+        </div>
+        <div class="output" id="nokia-outbox"></div>
+    </div>
+
+    <div id="iphone" class="mobile">
+        <h2>iPhone</h2>
+        <p>Pin: <span id="iphone-battery">100</span></p>
+        <p>Status: <span id="iphone-status">Off</span></p>
+        <div class="actions">
+            <button onclick="togglePower('iphone')">Power On/Off</button>
+            <button onclick="chargeBattery('iphone')">Charge</button>
+            <button onclick="viewInbox('iphone')">View Inbox</button>
+        </div>
+        <div class="output" id="iphone-inbox"></div>
+    </div>
+
+    <script src="exercise3.js"></script>
+</body>
+</html>
+</body>
+</html>

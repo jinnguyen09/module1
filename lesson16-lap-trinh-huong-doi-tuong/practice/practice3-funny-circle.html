@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vẽ Hình Tròn</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border:1px solid #000;"></canvas>
+</body>
+</html>
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function drawCircle(cx, cy, r) {
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = "blue";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    // Vẽ hình tròn với tọa độ cố định (400, 300) và bán kính 50
+    drawCircle(400, 300, 50);
+
+    function drawCircleWithRandomRadius(cx, cy) {
+        const r = Math.random() * 80; // Bán kính ngẫu nhiên từ 0-80
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    // Vẽ hình tròn với bán kính ngẫu nhiên tại (400, 300)
+    drawCircleWithRandomRadius(400, 300);
+
+    function getRandomHex() {
+        return Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+    }
+
+    function getRandomColor() {
+        return `#${getRandomHex()}${getRandomHex()}${getRandomHex()}`;
+    }
+
+    function drawCircleWithRandomColor(cx, cy, r) {
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = getRandomColor();
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    // Vẽ hình tròn với màu ngẫu nhiên tại (400, 300) và bán kính 50
+    drawCircleWithRandomColor(400, 300, 50);
+
+    function drawCircleWithRandomPosition() {
+        const cx = Math.random() * canvas.width; // Tọa độ X ngẫu nhiên
+        const cy = Math.random() * canvas.height; // Tọa độ Y ngẫu nhiên
+        const r = Math.random() * 80; // Bán kính ngẫu nhiên
+        drawCircleWithRandomColor(cx, cy, r);
+    }
+
+    // Vẽ hình tròn với vị trí ngẫu nhiên
+    drawCircleWithRandomPosition();
+    
+    drawCircleWithRandomPosition();
+    drawCircleWithRandomPosition();
+
+    function createMultipleCircles(count) {
+        for (let i = 0; i < count; i++) {
+            drawCircleWithRandomPosition();
+        }
+    }
+
+    // Tạo 50 hình tròn
+    createMultipleCircles(50);
+</script>

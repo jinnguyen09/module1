@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice 2 - Xây dựng lớp hình tròn</title>
+</head>
+<body>
+    <h1>Kết quả</h1>
+    <div id="results"></div> <!-- Hiển thị kết quả -->
+</body>
+</html> 
+<script>
+        // Bước 1: Tạo lớp Circle
+        class Circle {
+            constructor(radius) {
+                this.radius = radius; // Tham số bán kính
+            }
+
+            // Bước 2: Phương thức trả về bán kính
+            getRadius() {
+                return this.radius;
+            }
+
+            // Bước 3: Phương thức tính diện tích
+            getArea() {
+                return Math.PI * Math.pow(this.radius, 2); // Diện tích = π * r^2
+            }
+        }
+
+        // Bước 4: Tạo các đối tượng hình tròn
+        const circle1 = new Circle(15);  // Đối tượng với bán kính 2
+        const circle2 = new Circle(5);  // Đối tượng với bán kính 5
+        const circle3 = new Circle(10); // Đối tượng với bán kính 10
+
+        // Hàm hiển thị thông tin của đối tượng hình tròn
+        function displayCircleInfo(circle) {
+            const radius = circle.getRadius(); // Bước 5: Lấy bán kính
+            const area = circle.getArea();     // Bước 5: Tính diện tích
+
+            // Hiển thị kết quả
+            return `
+                <p>
+                    Bán kính: ${radius} <br>
+                    Diện tích: ${area.toFixed(2)}
+                </p>
+            `;
+        }
+
+        // Bước 6: Gọi hàm hiển thị thông tin của từng đối tượng
+        const resultsElement = document.getElementById("results");
+        resultsElement.innerHTML = `
+            <h3>Hình tròn 1:</h3>
+            ${displayCircleInfo(circle1)}
+            <h3>Hình tròn 2:</h3>
+            ${displayCircleInfo(circle2)}
+            <h3>Hình tròn 3:</h3>
+            ${displayCircleInfo(circle3)}
+        `;
+</script>

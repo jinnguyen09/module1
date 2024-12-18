@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangle Class</title>
+</head>
+<body>
+    <h1>Hình chữ nhật</h1>
+    <canvas id="rectangleCanvas" width="400" height="400" style="border:1px solid black;"></canvas>
+    <p id="info"></p>
+    <script>
+        class Rectangle {
+            constructor(width, height) {
+                this.width = width;
+                this.height = height;
+            }
+
+            getArea() {
+                return this.width * this.height;
+            }
+
+            getPerimeter() {
+                return 2 * (this.width + this.height);
+            }
+
+            // Vẽ hình chữ nhật trên canvas
+            draw(canvasId) {
+                const canvas = document.getElementById(canvasId);
+                const ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Xóa canvas
+                ctx.fillStyle = "lightblue";
+                ctx.fillRect(50, 50, this.width, this.height);
+            }
+        }
+
+        let rect = new Rectangle(100, 50);
+
+        rect.draw("rectangleCanvas");
+
+        const info = document.getElementById("info");
+        info.innerHTML = `
+            <p>Chiều dài: ${rect.height}px</p>
+            <p>Chiều rộng: ${rect.width}px</p>
+            <p>Diện tích: ${rect.getArea()}px²</p>
+            <p>Chu vi: ${rect.getPerimeter()}px</p>
+        `;
+
+        rect.width = 150;
+        rect.height = 100;
+
+        rect.draw("rectangleCanvas");
+
+        info.innerHTML += `
+            <h3>Hình chữ nhật sau khi thay đổi kích thước:</h3>
+            <p>Chiều dài: ${rect.height}px</p>
+            <p>Chiều rộng: ${rect.width}px</p>
+            <p>Diện tích: ${rect.getArea()}px²</p>
+            <p>Chu vi: ${rect.getPerimeter()}px</p>
+        `;
+    </script>
+</body>
+</html>

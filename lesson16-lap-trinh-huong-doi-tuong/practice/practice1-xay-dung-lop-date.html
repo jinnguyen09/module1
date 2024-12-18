@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice 1 Xây dựng lớp Date</title>
+</head>
+<body>
+    <div id="dateAndTime"></div>
+</body>
+</html>
+<script>
+     // Định nghĩa lớp Timer
+     class Timer {
+        static mydate(day, month, year) {
+            return `Today: ${day}/${month}/${year}`;
+        }
+
+        static myhour(seconds, minutes, hours, period) {
+            return `Now ${hours}:${minutes}:${seconds} ${period}`
+        }
+    }
+    function updateTime() {
+    // Lấy ngày, tháng, năm hiện tại
+    const now = new Date();
+   
+    const day = now.getDate();       // Lấy ngày
+    const month = now.getMonth() + 1; // Lấy tháng (0-11, cần +1)
+    const year = now.getFullYear(); // Lấy năm
+
+    // Laay giây, phút, giờ hiện tại 
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hours = now.getHours();
+    const period = hours < 12 ? "AM" : "PM";
+
+    // format giây và phút
+    const formatMinute = minutes < 10 ? "0" + minutes : minutes;
+    const formatSecond = seconds < 10 ? "0" + seconds : seconds;
+
+    // Gọi phương thức
+    document.getElementById('dateAndTime').innerHTML = (Timer.mydate(day, month, year) + "<br>" + Timer.myhour(formatSecond, formatMinute, hours, period));
+    }
+    setInterval(updateTime, 1000); // setInterval(Tên hàm cần cập nhật, 1000ms/1giay)
+</script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise 1 - Sử dụng các hàm có sẵn của mảng</title>
+</head>
+<body>
+    <p>Bài 1: Viết một chương trình Javascript để nối tất cả các phần tử trong một mảng chuỗi lại với nhau. Ví dụ có mảng chuỗi như sau: myColor = ["Red", "Green", "White", "Black"];
+        Sau khi thực thi chương trình sẽ trả về dạng như sau : </p>
+        <div id="output1"></div>
+    <p>Bài 2: Viết một chương trình nhận một số nhập vào và chèn dấu (-) giữa 2  số chẵn. 
+        Ví dụ nếu bạn nhập vào 025468 thì kết quả của chương trình sẽ là 0-254-6-8.</p>
+    <input type="button" onclick="inputNumber()" value="Input number">
+        <div id="output2"></div>
+    <p>Bài 3: Viết một chương trình nhập vào một chuỗi và chuyển các ký tự chữ thường trong chuỗi vừa nhập sang thành dạng chữ hoa.
+         Ví dụ: nếu bạn nhập vào chuỗi 'The Quick Brown Fox' kết quả của chương trình là 'tHE qUICK bROWN fOX'.</p>
+         <input type="button" onclick="inputWord()" value="Input word">
+        <div id="output3"></div>
+</body>
+</html>
+<script>
+    const output1 = document.getElementById('output1');
+    const output2 = document.getElementById('output2');
+    const output3 = document.getElementById('output3');
+
+    // Bai 1:
+    myColor = ["Red", "Green", "White", "Black"];
+        output1.innerHTML += myColor.toString() + '<br>'; // Chuyển đổi mảng sang kiểu chuỗi
+        output1.innerHTML += myColor.join() + '<br>'; // 
+        output1.innerHTML += myColor.join('+') ;
+
+    // Bai 2:
+    function inputNumber() {
+        let number = prompt('Input numbers: ');
+        let  str = number.toString(); // chuyển đổi mảng dãy số sang kiểu chuỗi
+        let result = [str[0]] // Gán str[0] cho mảng result
+
+        for (x = 1; x < str.length; x++) {
+            if (str[x-1] % 2 === 0 && (str[x] % 2 === 0)) {
+                result.push('-', str[x]);  // thêm dấu '-' vào các số chia hết cho 2
+            }
+            else {
+                result.push(str[x]);
+            }
+        }
+        output2.innerHTML += ('<br>' + result.join(''));
+    } 
+    // Bai 3: 
+    function inputWord() {
+        let word = prompt('Input words: '); // Chuỗi đầu vào
+        let str = word.toString(); 
+        let UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Chứa tất cả các chữ cái viết hoa.
+        let LOWER = 'abcdefghijklmnopqrstuvwxyz'; // Chứa tất cả các chữ cái viết thường.
+        let result = []; // Mảng để lưu các ký tự đã được chuyển đổi.
+
+        for ( x = 0; x < str.length; x++) { // Vòng lặp duyệt qua từng ký tự của chuỗi
+            if (UPPER.indexOf(str[x]) !== -1) { 
+                result.push(str[x].toLowerCase()); // Kiểm tra ký tự hiện tại có trong UPPER (chữ hoa)
+            } else if (LOWER.indexOf(str[x]) !== -1) {
+                result.push(str[x].toUpperCase()); // // Kiểm tra ký tự hiện tại có trong LOWER (chữ thường)
+            }
+            else {
+                result.push(str[x]); //Giữ nguyên các ký tự không phải chữ cái
+            }   
+        }
+        output3.innerHTML += '<br>' + result.join('');
+    }
+</script>
