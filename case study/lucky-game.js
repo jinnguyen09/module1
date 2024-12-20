@@ -9,17 +9,32 @@ const audio = new Audio(playlist[currentIndex]);
 
 function playSong() {
     audio.src = playlist[currentIndex];
+    audio.currentTime = 0;
     audio.play();
     updateSongInfo();
-}
+    }
+
+const musicPause = document.getElementById('audioPause')
+    musicPause.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play();
+            musicPause.textContent = "⏸ Tạm dừng";
+        } else {
+            audio.pause();
+            musicPause.textContent = "▶️ Tiếp tục";
+        }
+        updateSongInfo();
+    });
 
 function nextSong() {
     currentIndex = (currentIndex + 1) % playlist.length;
+    musicPause.textContent = "⏸ Tạm dừng";
     playSong();
 }
 
 function prevSong() {
     currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+    musicPause.textContent = "⏸ Tạm dừng";
     playSong();
 }
 

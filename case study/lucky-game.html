@@ -6,6 +6,7 @@
         <title>Lucky game</title>
         <link rel="icon" href="so6.png" type="image/x-icon">
         <link rel="stylesheet" href="lucky-game.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <audio id="win-sound">
@@ -30,59 +31,59 @@
                 <source src="con_cai_nit_tien_bip-www_tiengdong_com.mp3" type="audio/mpeg">
             </audio>
             
-            <h1 style="color: red; margin-top: 100px;">Welcome to Lucky game</h1>
-            <h5 style="color: grey; font-family:'Times New Roman', Times, serif; font-size: 15px;"><i>Kẻ không chơi là kẻ chiến thắng <br> by Nguyen Dinh Thiep</i></h5>
+            <h1 style="color: red; margin-top: 200px;">Welcome to Lucky game</h1><br>
+            <h5 style="color: grey; font-family:'Times New Roman', Times, serif; font-size: 15px;"><i>Kẻ không chơi là kẻ chiến thắng <br> by Nguyen Dinh Thiep</i></h5><br>
             
             <div style="font-size: 10px;">
-                <h2 id="song-info">Đang phát: Chưa có bài hát nào</h2>
-                <input type="button" value="Tua lại 10s" onclick="rewindAudio()"></input>
-                <input type="button" value="Tua tới 10s" onclick="forwardAudio()"></input><br>
-                <button style="color: cyan; background-color: black;" onclick="playSong()">▶️ Phát</button>
-                <button style="color: cyan; background-color: black;" onclick="audio.pause()">⏸ Tạm dừng</button>
-                <button style="color: cyan; background-color: black;" onclick="prevSong()">⏮ Trước</button>
-                <button style="color: cyan; background-color: black;" onclick="nextSong()">⏭ Tiếp</button><br>
-            <button style="color: cyan; background-color: black;" onclick="shuffleSong()">🔀 Phát ngẫu nhiên</button>
-            <button style="color: cyan; background-color: black;" onclick="toggleLoop()">🔁 Lặp</button>
-        </div>
+                <h2 id="song-info">Đang phát: Chưa có bài hát nào</h2><br>
+                <button class="tuaNhac" onclick="rewindAudio()" style="margin-right: 5px;">-10s</button>
+                <button class="tuaNhac" onclick="forwardAudio()" style="margin-left: 5px;">+10s</button><br>
+                <button class="phatNhac" onclick="playSong()">▶️ Phát</button>
+                <button class="phatNhac" id="audioPause">▶️ Tạm dừng</button> <br>
+                <button class="phatNhac" onclick="prevSong()">⏮ Trước</button>
+                <button class="phatNhac" onclick="nextSong()">⏭ Tiếp</button><br>
+                <button class="phatNhac" onclick="shuffleSong()">🔀 Phát ngẫu nhiên</button>
+                <button class="phatNhac" onclick="toggleLoop()">🔁 Lặp</button>
+            </div>
+
+            <!-- Hiển thị số tiền của người chơi -->
+            <div class="balance"><br>
+                <h3>Số tiền hiện tại: <span id="balance"></span> VND</h3>
+            </div>
         
-        <!-- Hiển thị số tiền của người chơi -->
-        <div class="balance">
-            <h3>Số tiền hiện tại: <span id="balance"></span> VND</h3>
-        </div>
+            <!-- Phần đặt cược -->
+            <div class="betting">
+                <h3>Nhập số tiền cược</h3><br>
+                <input type="number" id="bet-amount" placeholder="Số tiền cược" min="1000" step="1000">
+            </div>
         
-        <!-- Phần đặt cược -->
-        <div class="betting">
-            <h3>Nhập số tiền cược</h3>
-            <input type="number" id="bet-amount" placeholder="Số tiền cược" min="1000" step="1000">
+            <div class="game-controls">
+                <h3>Chọn Tài (11-18) hoặc Xỉu (3-10)</h3>
+                <button onclick="playGame('Tai')">Chọn Tài</button>
+                <button onclick="playGame('Xiu')">Chọn Xỉu</button>
+            </div>
+            
+            <div class="dice-container">
+                <img id="dice1" class="dice" src="so1.png" alt="Dice">
+                <img id="dice2" class="dice" src="so2.png" alt="Dice">
+                <img id="dice3" class="dice" src="so3.png" alt="Dice">
+            </div>
+            
+            <!-- Thông báo kết quả -->
+            <h2 id="result-message"></h2>
+            
+            <!-- Phần nạp tiền -->
+            <div class="deposit">
+                <h3>Nạp tiền vào trò chơi</h3>
+                <input type="number" id="deposit-amount" placeholder="Số tiền muốn nạp" min="10000" step="1000">
+                <button onclick="depositMoney()">Nạp tiền</button>
+            </div>
+            <div class="widrawMoney">
+                <h3>Rút tiền</h3>
+                <input type="number" id="widraw-amount" placeholder="Số tiền muốn rút" min="10000" step="1000">
+                <button onclick="withdrawMoney()">Rút tiền</button>
+            </div>
         </div>
-        
-        <div class="game-controls">
-            <h3>Chọn Tài (11-18) hoặc Xỉu (3-10)</h3>
-            <button onclick="playGame('Tai')">Chọn Tài</button>
-            <button onclick="playGame('Xiu')">Chọn Xỉu</button>
-        </div>
-        
-        <div class="dice-container">
-            <img id="dice1" class="dice" src="so1.png" alt="Dice">
-            <img id="dice2" class="dice" src="so2.png" alt="Dice">
-            <img id="dice3" class="dice" src="so3.png" alt="Dice">
-        </div>
-        
-        <!-- Thông báo kết quả -->
-        <h2 id="result-message"></h2>
-        
-        <!-- Phần nạp tiền -->
-        <div class="deposit">
-            <h3>Nạp tiền vào trò chơi</h3>
-            <input type="number" id="deposit-amount" placeholder="Số tiền muốn nạp" min="10000" step="1000">
-            <button onclick="depositMoney()">Nạp tiền</button>
-        </div>
-        <div class="widrawMoney">
-            <h3>Rút tiền</h3>
-            <input type="number" id="widraw-amount" placeholder="Số tiền muốn rút" min="10000" step="1000">
-            <button onclick="withdrawMoney()">Rút tiền</button>
-        </div>
-    </div>
     <div class="images-container">
         <img src="banner-nhacai3.jpg" alt="">
         <img src="banner-nhacai4.jpg" alt="">
