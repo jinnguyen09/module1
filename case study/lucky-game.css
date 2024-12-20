@@ -39,7 +39,7 @@ body {
     width: 400px;
     flex-shrink: 0;
 }
-.tuaNhac {
+.tuaNhac button{
     background-color: white;
     color: green; 
     border-color: #45a049;
@@ -48,24 +48,24 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.tuaNhac:hover {
+.tuaNhac button:hover {
     background-color: #45a049;
     color: white
 }
-.tuaNhac:active {
+.tuaNhac button:active {
     opacity: 0.5;
 }
 
-.phatNhac{
+.phatNhac button{
     background-color: black;
     color: cyan; 
     transition: background-color 0.3s, color 0.3s;
 }
-.phatNhac:hover {
+.phatNhac button:hover {
     background-color: cyan;
     color: black;
 }
-.phatNhac:active {
+.phatNhac button:active {
     opacity: 0.5;;
 }
 button {

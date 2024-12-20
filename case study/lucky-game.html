@@ -36,14 +36,18 @@
             
             <div style="font-size: 10px;">
                 <h2 id="song-info">Đang phát: Chưa có bài hát nào</h2><br>
-                <button class="tuaNhac" onclick="rewindAudio()" style="margin-right: 5px;">-10s</button>
-                <button class="tuaNhac" onclick="forwardAudio()" style="margin-left: 5px;">+10s</button><br>
-                <button class="phatNhac" onclick="playSong()">▶️ Phát</button>
-                <button class="phatNhac" id="audioPause">▶️ Tạm dừng</button> <br>
-                <button class="phatNhac" onclick="prevSong()">⏮ Trước</button>
-                <button class="phatNhac" onclick="nextSong()">⏭ Tiếp</button><br>
-                <button class="phatNhac" onclick="shuffleSong()">🔀 Phát ngẫu nhiên</button>
-                <button class="phatNhac" onclick="toggleLoop()">🔁 Lặp</button>
+                <div class="tuaNhac">
+                    <button onclick="rewindAudio()" style="margin-right: 5px;">-10s</button>
+                    <button onclick="forwardAudio()" style="margin-left: 5px;">+10s</button><br>
+                </div>
+                <div class="phatNhac">
+                    <button onclick="playSong()">▶️ Phát</button>
+                    <button id="audioPause">▶️ Tạm dừng</button> <br>
+                    <button onclick="prevSong()">⏮ Trước</button>
+                    <button onclick="nextSong()">⏭ Tiếp</button><br>
+                    <button onclick="shuffleSong()">🔀 Phát ngẫu nhiên</button>
+                    <button onclick="toggleLoop()">🔁 Lặp</button>
+                </div>
             </div>
 
             <!-- Hiển thị số tiền của người chơi -->
