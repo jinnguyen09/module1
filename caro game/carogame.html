@@ -293,17 +293,17 @@
                 const evaluateLine = (line) => {
                     let countO = 0;
                     let countX = 0;
-                    const attackWeight = 100; // Trọng số tấn công
-                    const defenseWeight = 100; // Trọng số phòng thủ
+                    const attackWeight = 1000; // Trọng số tấn công
+                    const defenseWeight = 1000; // Trọng số phòng thủ
                     for (let cell of line) {
                         if (cell === "O") countO++;
                         else if (cell === "X") countX++;
                     }
 
                     if (countO > 0 && countX === 0) {
-                        score += attackWeight * Math.pow(10, countO);
+                        score += attackWeight * Math.pow(1000, countO);
                     } else if (countX > 0 && countO === 0) {
-                        score -= defenseWeight * Math.pow(10, countX);
+                        score -= defenseWeight * Math.pow(1000, countX);
                     }
                 };
 
