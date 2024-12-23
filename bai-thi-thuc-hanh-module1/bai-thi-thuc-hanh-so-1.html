@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài thi thực hành số 1</title>
+</head>
+<body style="text-align: center; margin-top: 200px;">
+    <h1>Chương trình hiển thị trung bình cộng các số có trong mảng chia hết cho 3.</h1>
+    <input type="text" id="soLuongPhanTu" placeholder="Nhập số phần tử trong mảng (không quá 50)">
+    <button onclick="trungBinhCongChiaHetCho3()">Tính</button>
+    <div id="hienThiCacPhanTu"></div>
+    <div id="hienThiKetQua"></div>
+</body>
+</html>
+<script>
+function trungBinhCongChiaHetCho3() {
+    let arr = [];
+    
+    let soPhanTu = parseInt(document.getElementById('soLuongPhanTu').value);
+    soPhanTu = parseInt(soPhanTu);
+    
+    if (soPhanTu <= 0 || soPhanTu > 50) {
+        alert("Số phần tử phải từ 1 đến 50.");
+        return;
+    }
+    
+    for (let i = 0; i < soPhanTu; i++) {
+        let element = prompt(`Nhập phần tử thứ ${i + 1}:`);
+        element = parseInt(element);
+        arr.push(element);
+    }
+    
+    document.getElementById('hienThiCacPhanTu').innerHTML = "<br>" + "Mảng đã nhập: " + arr;
+
+    let sum = 0;
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 3 === 0) {
+            sum += arr[i];
+            count++;
+        }
+    }
+    if (count > 0) {
+        let average = sum / count;
+        document.getElementById('hienThiKetQua').innerHTML = "Trung bình cộng của các số chia hết cho 3 là: " + average;
+    } else {
+        document.getElementById('hienThiKetQua').innerHTML = "Không có số nào chia hết cho 3 trong mảng.";
+    }
+}
+</script>

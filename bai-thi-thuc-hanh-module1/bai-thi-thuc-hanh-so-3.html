@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài thi thực hành số 3</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: center;
+        }
+        table {
+            margin: 0 auto;
+        }
+        #baoCaoNamNhuan {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thông tin số ngày của từng tháng trong năm</h1>
+    <div>
+        <input type="number" id="nam" placeholder="Nhập năm để xem bảng" />
+        <button onclick="hienThiSoNgayTrongNam()">Hiển thị</button>
+    </div>
+    <div id="baoCaoNamNhuan"></div><br>
+    <table id="bangSoNgay">
+        <thead>
+            <tr>
+                <th>Tháng</th>
+                <th>Số ngày</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>
+<script>
+function kiemTraNamNhuan(nam) {
+        if ((nam % 4 === 0 && nam % 100 !== 0) || (nam % 400 === 0)) {
+            return true; 
+        }
+        return false; 
+    }
+function hienThiSoNgayTrongNam() {
+    let nam = parseInt(document.getElementById('nam').value);
+
+    if (isNaN(nam) || nam <= 0) {
+        alert("Vui lòng nhập năm hợp lệ.");
+        return;
+    }
+
+    let tbody = document.getElementById('bangSoNgay').getElementsByTagName('tbody')[0];
+    tbody.innerHTML = ""; 
+
+    for (let thang = 1; thang <= 12; thang++) {
+        let soNgay;
+
+        switch (thang) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                soNgay = 31;
+                break;
+            case 4: case 6: case 9: case 11:
+                soNgay = 30;
+                break;
+            case 2:
+                soNgay = kiemTraNamNhuan(nam) ? 29 : 28;
+                if (soNgay == 29) {
+                    document.getElementById('baoCaoNamNhuan').innerHTML = "<br>" + "Năm " + nam + " là năm nhuận";
+                } else {
+                    document.getElementById('baoCaoNamNhuan').innerHTML = "<br>" + "Năm " + nam + " không phải là năm nhuận";
+
+                }
+                break;
+        }
+
+        let row = tbody.insertRow();
+        let cellThang = row.insertCell(0);
+        let cellSoNgay = row.insertCell(1);
+
+        cellThang.textContent = thang;
+        cellSoNgay.textContent = soNgay;
+    }
+}
+</script>

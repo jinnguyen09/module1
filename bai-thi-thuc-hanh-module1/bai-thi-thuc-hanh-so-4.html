@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài thực hành số 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quản lý công nhân phân xưởng</h1>
+
+    <div>
+        <input type="text" id="hoTen" placeholder="Nhập họ và tên">
+        <input type="date" id="ngaySinh" placeholder="Nhập ngày sinh">
+        <input type="text" id="diaChi" placeholder="Nhập địa chỉ">
+        <input type="number" id="luong" placeholder="Nhập lương (VND)" min="3000000" step="1000000">
+        <input type="text" id="chucVu" placeholder="Nhập chức vụ">
+        <button onclick="themCongNhan()">Thêm công nhân</button>
+    </div>
+
+    <table id="danhSachCongNhan">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Họ và tên</th>
+                <th>Ngày sinh</th>
+                <th>Địa chỉ</th>
+                <th>Lương</th>
+                <th>Chức vụ</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>
+<script>
+let danhSachCongNhan = [];
+
+class CongNhan {
+    constructor(stt, hoTen, ngaySinh, diaChi, luong, chucVu) {
+        this.stt = stt;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.luong = luong;
+        this.chucVu = chucVu;
+    }
+}
+
+function themCongNhan() {
+    let hoTen = document.getElementById('hoTen').value;
+    let ngaySinh = document.getElementById('ngaySinh').value;
+    let diaChi = document.getElementById('diaChi').value;
+    let luong = document.getElementById('luong').value;
+    let chucVu = document.getElementById('chucVu').value;
+
+    if (!hoTen || !ngaySinh || !diaChi || !luong || !chucVu) {
+        alert("Vui lòng nhập đầy đủ thông tin.");
+        return;
+    }
+
+    let stt = danhSachCongNhan.length + 1;
+    let congNhanMoi = new CongNhan(stt, hoTen, ngaySinh, diaChi, luong, chucVu);
+    danhSachCongNhan.push(congNhanMoi);
+
+    document.getElementById('hoTen').value = '';
+    document.getElementById('ngaySinh').value = '';
+    document.getElementById('diaChi').value = '';
+    document.getElementById('luong').value = '';
+    document.getElementById('chucVu').value = '';
+
+    let tbody = document.getElementById('danhSachCongNhan').getElementsByTagName('tbody')[0];
+    tbody.innerHTML = ""; 
+
+    danhSachCongNhan.forEach(congNhan => {
+        let row = tbody.insertRow();
+        row.insertCell(0).textContent = congNhan.stt;
+        row.insertCell(1).textContent = congNhan.hoTen;
+        row.insertCell(2).textContent = congNhan.ngaySinh;
+        row.insertCell(3).textContent = congNhan.diaChi;
+        row.insertCell(4).textContent = congNhan.luong + ' VND';
+        row.insertCell(5).textContent = congNhan.chucVu;
+    });
+}
+</script>
