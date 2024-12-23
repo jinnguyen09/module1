@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caro Game</title>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            /* Khoảng cách giữa các nút */
+        }
+
+        button {
+            padding: 30px 50px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:first-child {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        button:first-child:hover {
+            background-color: #0056b3;
+        }
+
+        button:last-child {
+            background-color: #28a745;
+            color: white;
+        }
+
+        button:last-child:hover {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="button-container">
+        <button id="onePlayerBtn" onclick="handleLetGo('withComputer')">1 Người Chơi</button>
+        <button id="twoPlayersBtn" onclick="handleLetGo('withPlayer')">2 Người Chơi</button>
+    </div>
+
+
+    <script>
+        function handleLetGo(typePlay) {
+            const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, "");
+            window.location.href = `${baseUrl}/carogame.html?type=` + typePlay ;
+        }
+    </script>
+</body>
+
+</html>

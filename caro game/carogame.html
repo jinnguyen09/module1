@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò chơi cờ ca-ro</title>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="carogame.css">
+</head>
+<style>
+    .button {
+        padding: 0;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        margin: 10px;
+        font-size: 100px;
+        max-width: 100%;
+        height: auto;
+    }
+    body {
+        width: 100%;
+        overflow-x: hidden; /* Ngăn tràn ngang */
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div style="margin-top: 150px;">
+            <div style="margin-bottom: 10px;">
+                <select id="sizeGameBoard">
+                    <option value="10">10 x 10</option>
+                    <option value="15">15 x 15</option>
+                    <option value="20">20 x 20</option>
+                </select>
+                <button onclick="start()">Chơi</button>
+                
+            </div>
+            
+            <div id="gameBoard-wrapper">
+                <table id="gameBoard"></table>
+            </div>
+            <h1 style="color: palevioletred; background-color: black; display: block; text-align: center;">By Nguyen Dinh Thiep</h1> <br> 
+            <div id="winResult">Kết quả
+                <hr style="color: red;">
+                <div id="result"></div>
+            </div>
+        </div>
+        <div class="button" style="display: block;">
+            <div onclick="handleBack()" id="back" title="Quay lại trang chủ" style="display: inline-block;">↩️</div>
+            <div id="playPauseMusic" onclick="switchMusic()" style="display: inline-block;">🔊</div>
+            <audio id="myMusic" src="music.mp3" muted autoplay></audio>
+        </div>
+    </div>
+    
+    <script>
+        let onMusic = false;
+        const audio = document.getElementById("myMusic")
+        audio.volume = 0.5;
+        let music = document.getElementById("playPauseMusic");
+        function switchMusic() {
+            onMusic = !onMusic;
+            if (onMusic) {
+                audio.play();
+                music.innerText = `🔊`
+            } else {
+                audio.pause();
+                music.innerText = `🔇`
+            }
+        }
+
+        window.addEventListener("load", () => {
+            onMusic = true;
+            const audio = document.getElementById("myMusic");
+            audio.muted = false; // Bỏ mute sau khi audio bắt đầu phát
+        });
+        
+        function handleBack() {
+            const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, "");
+            window.location.href = `${baseUrl}/index.html`;
+        }
+
+        let gameMode = "";
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('type') === 'withPlayer') {
+            gameMode = "player";
+        } else {
+            gameMode = "computer";
+        }
+
+        let round = 1;
+
+        function Cell(x, y) {
+            this.x = x;
+            this.y = y;
+            this.value = null;
+            this.getHtml = function () {
+                return `<td id="cell-${x}-${y}" onclick="tick(${x},${y})"></td>`;
+            };
+        }
+
+        function GameBoard(size) {
+            this.size = size;
+            this.turn = "X";
+            this.cells = [];
+            this.isOver = false;
+            this.lastMoves = new Set(); // Giới hạn vùng tìm kiếm
+
+            this.draw = function () {
+                let gameBoard = "";
+                for (let i = 0; i < this.size; i++) {
+                    let row = [];
+                    this.cells.push(row);
+                    gameBoard += "<tr>";
+                    for (let j = 0; j < this.size; j++) {
+                        let cell = new Cell(i, j);
+                        row.push(cell);
+                        gameBoard += cell.getHtml();
+                    }
+                    gameBoard += "</tr>";
+                }
+                document.getElementById('gameBoard').innerHTML = gameBoard;
+            };
+
+            this.markGameBoard = function (x, y) {
+                if (this.isOver) return;
+                let cell = this.cells[x][y];
+                let element = document.getElementById(`cell-${x}-${y}`);
+                if (!cell.value) {
+                    cell.value = element.innerHTML = this.turn;
+                    this.isOver = this.checkWin(x, y, this.turn);
+                    this.turn = this.turn === "X" ? "O" : "X";
+                    element.style.cursor = "not-allowed";
+                    this.lastMoves.add([x, y]); // Thêm ô vừa đánh vào vùng tìm kiếm
+
+                    if (gameMode === "computer" && this.turn === "O" && !this.isOver) {
+                        setTimeout(() => this.computerMove(), 500);
+                    }
+                }
+            };
+
+            this.computerMove = function () {
+                let ai = new GomokuAI(this); // this tham chiếu đến instance của lớp GameBoard
+                let bestMove = ai.findBestMove();
+                if (bestMove) this.markGameBoard(bestMove.x, bestMove.y);
+            };
+
+            const highlightWinningCells = (winningCells) => {
+                for (let [row, col] of winningCells) {
+                    document.getElementById(`cell-${row}-${col}`).classList.add("winning-cell");
+                }
+            };
+
+            this.checkWin = function (x, y, player) {
+                const directions = [
+                    [0, 1], // Hướng Ngang
+                    [1, 0], // Hướng Dọc
+                    [1, 1], // Hướng Chéo chính
+                    [1, -1] // Hướng Chéo phụ
+                ];
+
+                for (let [dx, dy] of directions) {
+                    let winningCells = [[x, y]];
+                    let count = 1;
+                    for (let step = 1; step < 5; step++) {
+                        let nx = x + step * dx;
+                        let ny = y + step * dy;
+                        if (
+                            nx >= 0 && nx < this.size &&
+                            ny >= 0 && ny < this.size &&
+                            this.cells[nx][ny].value === player
+                        ) {
+                            winningCells.push([nx, ny]);
+                            count++;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    for (let step = 1; step < 5; step++) {
+                        let nx = x - step * dx;
+                        let ny = y - step * dy;
+                        if (
+                            nx >= 0 && nx < this.size &&
+                            ny >= 0 && ny < this.size &&
+                            this.cells[nx][ny].value === player
+                        ) {
+                            count++;
+                            winningCells.push([nx, ny]);
+                        } else {
+                            break;
+                        }
+                    }
+
+                    if (count >= 5) {
+                        highlightWinningCells(winningCells);
+                        document.getElementById("result").innerHTML += `${round}. ${player} thắng<br>`;
+                        round++;
+                        return true;
+                    }
+                }
+                return false;
+            };
+        }
+
+        function GomokuAI(gameBoard) {
+            this.board = gameBoard;
+            this.EMPTY = null;
+
+            this.findBestMove = function (depth = 3) {
+                let bestValue = -Infinity;
+                let bestMove = null;
+
+                const possibleMoves = this.getDynamicMoves(); // Giới hạn tìm kiếm
+                for (let move of possibleMoves) {
+                    const [x, y] = move;
+                    this.board.cells[x][y].value = "O";
+                    let moveValue = this.minimax(depth - 1, -Infinity, Infinity, false);
+                    this.board.cells[x][y].value = this.EMPTY;
+
+                    if (moveValue > bestValue) {
+                        bestValue = moveValue;
+                        bestMove = { x, y };
+                    }
+                }
+                return bestMove;
+            };
+
+            this.getDynamicMoves = function () {
+                const range = 1; // Giới hạn vùng xung quanh ô đã đánh
+                const moves = new Set();
+
+                this.board.lastMoves.forEach((move) => {
+                    const [x, y] = move;
+                    for (let dx = -range; dx <= range; dx++) {
+                        for (let dy = -range; dy <= range; dy++) {
+                            let nx = x + dx;
+                            let ny = y + dy;
+                            if (
+                                nx >= 0 && nx < this.board.size &&
+                                ny >= 0 && ny < this.board.size &&
+                                this.board.cells[nx][ny].value === this.EMPTY
+                            ) {
+                                moves.add(`${nx}-${ny}`); // Thêm chuỗi để nhận diện set
+                            }
+                        }
+                    }
+                });
+
+                return Array.from(moves).map(coord => coord.split('-').map(Number)); // Chuyển chuỗi về mảng [x, y]
+            };
+
+
+            this.minimax = function (depth, alpha, beta, isMaximizing) {
+                if (depth === 0) {
+                    return this.evaluateBoard();
+                }
+
+                const possibleMoves = this.getDynamicMoves(); // Chỉ duyệt trong vùng tìm kiếm
+
+                if (isMaximizing) {
+                    let maxEval = -Infinity;
+                    for (let move of possibleMoves) {
+                        const [x, y] = move;
+                        this.board.cells[x][y].value = "O";
+                        let eval = this.minimax(depth - 1, alpha, beta, false);
+                        this.board.cells[x][y].value = this.EMPTY;
+                        maxEval = Math.max(maxEval, eval);
+                        alpha = Math.max(alpha, eval);
+                        if (beta <= alpha) break;
+                    }
+                    return maxEval;
+                } else {
+                    let minEval = Infinity;
+                    for (let move of possibleMoves) {
+                        const [x, y] = move;
+                        this.board.cells[x][y].value = "X";
+                        let eval = this.minimax(depth - 1, alpha, beta, true);
+                        this.board.cells[x][y].value = this.EMPTY;
+                        minEval = Math.min(minEval, eval);
+                        beta = Math.min(beta, eval);
+                        if (beta <= alpha) break;
+                    }
+                    return minEval;
+                }
+            };
+
+            this.evaluateBoard = function () {
+                let score = 0;
+
+                const evaluateLine = (line) => {
+                    let countO = 0;
+                    let countX = 0;
+                    const attackWeight = 100; // Trọng số tấn công
+                    const defenseWeight = 100; // Trọng số phòng thủ
+                    for (let cell of line) {
+                        if (cell === "O") countO++;
+                        else if (cell === "X") countX++;
+                    }
+
+                    if (countO > 0 && countX === 0) {
+                        score += attackWeight * Math.pow(10, countO);
+                    } else if (countX > 0 && countO === 0) {
+                        score -= defenseWeight * Math.pow(10, countX);
+                    }
+                };
+
+                const getLine = (x, y, dx, dy) => {
+                    let line = [];
+                    for (let i = 0; i <= 4; i++) {
+                        let nx = x + i * dx;
+                        let ny = y + i * dy;
+                        if (nx >= 0 && nx < this.board.size && ny >= 0 && ny < this.board.size) {
+                            line.push(this.board.cells[nx][ny].value);
+                        } else break;
+                    }
+                    return line;
+                };
+
+                const evaluateDynamicLines = () => {
+                   const directions = [
+                        [0, 1],  // Horizontal
+                        [1, 0],  // Vertical
+                        [1, 1],  // Diagonal down-right
+                        [1, -1], // Diagonal up-right
+                    ];
+
+                    this.board.lastMoves.forEach(([x, y]) => { // Lặp qua các nước đi gần nhất 
+                        directions.forEach(([dx, dy]) => { // Duyệt qua các hướng từ nước đi hiện tại (kiểm tra 4 hướng)
+                            for (let i = -4; i <= 0; i++) { // Duyệt kiểm tra trước nước vừa đánh có vượt khỏi khu vực chơi
+                                const startX = x + i * dx;
+                                const startY = y + i * dy;
+                                if (
+                                    startX >= 0 && startX < this.board.size &&
+                                    startY >= 0 && startY < this.board.size
+                                ) evaluateLine(getLine(startX, startY, dx, dy));
+                            }
+                        });
+                    });
+                };
+                evaluateDynamicLines();
+                return score;
+            };
+        }
+
+        let gameBoard;
+        function start() {
+            let size = document.getElementById("sizeGameBoard").value;
+            gameBoard = new GameBoard(size);
+            gameBoard.draw();
+        }
+
+        function tick(x, y) {
+            gameBoard.markGameBoard(x, y);
+        }
+
+        start();
+        // switchMusic()
+    </script>
+
+</body>
+</html>

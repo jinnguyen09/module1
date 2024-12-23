@@ -1,0 +1,65 @@
+#container {
+    display: flex;
+    justify-content: center; /* Căn giữa các phần tử theo chiều ngang */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    max-width: 100%;
+    height: auto;
+}
+
+#gameBoard-wrapper {
+    max-width: 40rem;
+    max-height: 40rem;  
+    overflow: auto;
+}
+
+#winResult {
+    max-width: 100%;
+    height: auto;
+    /* Chiều rộng cố định cho kết quả */
+    background-color: lightgreen;
+    /* Màu nền cho kết quả */
+    font-size: 20px;
+    /* Kích thước font chữ */
+    font-weight: bold;
+    /* In đậm chữ */
+    padding: 20px;
+    box-sizing: border-box;
+    /* Đảm bảo padding không làm thay đổi kích thước */
+    margin-right: 20px;
+    text-align: center; /* Căn giữa nội dung trong #winResult */
+    opacity: 0.95; /* Độ trong suốt nhẹ */
+}
+
+table {
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    opacity: 0.95;
+}
+
+#gameBoard {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    width: max-content;
+    border-collapse: collapse; 
+    max-width: 100%;
+    height: auto;
+}
+
+td {
+    color: red;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #000; /* Đường viền giữa các ô */
+    padding: 10px; /* Khoảng cách giữa nội dung và viền */
+    text-align: center; /* Căn giữa nội dung */
+    cursor: pointer; /* Thêm hiệu ứng chuột cho các ô */
+}
+
+td:hover {
+    background-color: #ddd; /* Màu khi di chuột qua dòng */
+}
+
+.winning-cell {
+    background-color: green;
+    color: white;
+}

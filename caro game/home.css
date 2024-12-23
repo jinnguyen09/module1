@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("https://static.game24h.vn/upload/2018/2018-3/game/2018-08-21/co-caro-2-nguoi.png");
+    background-color: rgba(197, 175, 175, 0.337);
+    /* background-blend-mode: overlay; */
+    background-repeat: no-repeat;
+    /* Ngừng việc lặp lại background */
+    background-size: 100% 100%;
+    background-position: center;
+}
